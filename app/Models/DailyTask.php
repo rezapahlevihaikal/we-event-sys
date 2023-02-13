@@ -16,7 +16,8 @@ class DailyTask extends Model
         'tanggal',
         'pic',
         'kegiatan',
-        'status'
+        'status',
+        'file'
     ];
 
     public function getEvent()

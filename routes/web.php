@@ -55,6 +55,7 @@ Route::prefix('eventBudget')->group(function(){
 	Route::post('store/{id}', [EventBudgetController::class, 'store'])->name('eventBudget.store');
 	Route::get('edit/{id}', [EventBudgetController::class, 'edit'])->name('eventBudget.edit');
 	Route::post('update/{id}', [EventBudgetController::class, 'update'])->name('eventBudget.update');
+	Route::get('download/{id}', [EventBudgetController::class, 'getFileBudget'])->name('eventBudget.download');
 });
 
 Route::prefix('sponsor')->group(function(){

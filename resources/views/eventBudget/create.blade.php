@@ -45,6 +45,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" style="padding-top: 10px">
+                      <div class="col">
+                        <strong>File attach (Max 2 MB):</strong>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="exampleInputFile" name="file">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            @error('file')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{$message}}</strong>
+                              </span>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
                     <br>
                     <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
                     <button class="btn btn-primary" type="submit">Create Data</button>

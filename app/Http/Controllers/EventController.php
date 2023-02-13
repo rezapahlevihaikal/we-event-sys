@@ -79,7 +79,7 @@ class EventController extends Controller
         if ($request->file) {
             
             $filename = $headerNameDoc."_".uniqid().".".$request->file->extension();        
-            $request->file->move(public_path('uploads'), $filename);
+            $request->file->move(public_path('uploads/file_event'), $filename);
         }        
         
 
@@ -154,9 +154,9 @@ class EventController extends Controller
         $end = 'edited';
 
         if ($request->has('file')) {
-            $filename = $headerNameDoc."_".uniqid()."_".$end."_".$request->file->getClientOriginalExtension();
-            File::delete(public_path('uploads'), $data->file);
-            $request->file->move(public_path('uploads'), $filename);
+            $filename = $headerNameDoc."_".uniqid()."_".$end.".".$request->file->getClientOriginalExtension();
+            File::delete(public_path('uploads/file_event'), $data->file);
+            $request->file->move(public_path('uploads/file_event'), $filename);
         }
         else {
             $filename = $data->file;
@@ -192,8 +192,8 @@ class EventController extends Controller
         ]);
 
 
-        $input['file'] = time().'.'.$request->file->getClientOriginalExtension();
-        $request->file->move(public_path('uploads'), $input['file']);
+        $input['file'] = 'doc'.'_'.time().'.'.$request->file->getClientOriginalExtension();
+        $request->file->move(public_path('uploads/documentation'), $input['file']);
 
         $input['event_id'] = $dataEvent->id;
         $input['title'] = $request->title;

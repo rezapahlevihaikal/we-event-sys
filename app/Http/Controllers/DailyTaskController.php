@@ -38,14 +38,43 @@ class DailyTaskController extends Controller
      */
     public function store(Request $request, $id)
     {
-        //
+
         $dataEvent = Event::find($id);
+        //
+        
+        $filename = null;
+        $request->validate([
+            'file' => 'nullable|mimes:mimes:jpg,jpeg,png|max:5120'
+        ]);
+
+        $rules = [
+            'file' => 'nullable|mimes:jpg,jpeg,png|max:5120'
+        ];
+
+        $customMessage = [
+            
+            'max' => 'The :attribute max :value'
+        ];
+
+        $this->validate($request, $rules, $customMessage);
+
+        $headerNameDoc = 'Daily';
+        $getId = $dataEvent->id;
+
+        if ($request->file) {
+            
+            $filename = $headerNameDoc."_".$getId.uniqid().".".$request->file->extension();        
+            $request->file->move(public_path('uploads/daily_task'), $filename);
+        }
+
+
         $data = DailyTask::create([
             'event_id' => $dataEvent->id,
             'tanggal' => $request->tanggal,
             'pic' => $request->pic,
             'kegiatan' => $request->kegiatan,
-            'status' => $request->status
+            'status' => $request->status,
+            'file' => $filename
         ]);
 
         if ($data) {
@@ -89,12 +118,31 @@ class DailyTaskController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'file' => 'nullable|mimes:jpg,jpeg,png|max:5120'
+        ]);
+
+        $data = DailyTask::find($id);
+
+        $headerNameDoc = 'Daily';
+        $end = 'edited';
+
+        if ($request->has('file')) {
+            $filename = $headerNameDoc."_".uniqid()."_".$end.".".$request->file->getClientOriginalExtension();
+            File::delete(public_path('uploads/budget'), $data->file);
+            $request->file->move(public_path('uploads/budget'), $filename);
+        }
+        else {
+            $filename = $data->file;
+        }
+
         $data = DailyTask::find($id);
         $data->update([
             'tanggal' => $request->tanggal,
             'pic' => $request->pic,
             'kegiatan' => $request->kegiatan,
-            'status' => $request->status
+            'status' => $request->status,
+            'file' =>$filename
         ]);
 
         if ($data) {

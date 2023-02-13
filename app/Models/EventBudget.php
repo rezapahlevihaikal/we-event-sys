@@ -14,7 +14,8 @@ class EventBudget extends Model
     protected $fillable = [
         'event_id',
         'jenis_pengeluaran',
-        'nominal'
+        'nominal',
+        'file'
     ];
 
     public function getEventId()
