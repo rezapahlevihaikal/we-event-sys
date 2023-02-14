@@ -40,6 +40,15 @@
                             <input type="text" name="tema" class="form-control" value="{{$data->tema}}">
                         </div>
                     </div>
+                    <div class="row" style="padding-top: 10px">
+                      <div class="col">
+                        <label class="sr-only" for="inlineFormInputGroup">URl</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">https://</div>
+                          </div>
+                          <input type="text" name="url" class="form-control" id="inlineFormInputGroup" placeholder="URl" value="{{$data->url}}">
+                        </div> 
                     <br>
                     <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
                     <button class="btn btn-primary" type="submit">Create Data</button>

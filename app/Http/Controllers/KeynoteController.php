@@ -43,7 +43,8 @@ class KeynoteController extends Controller
         $data = Keynote::create([
             'event_id' => $dataEvent->id,
             'narasumber' => $request->narasumber,
-            'tema' => $request->tema
+            'tema' => $request->tema,
+            'url' => $request->url
         ]);
 
         if ($data) {
@@ -93,7 +94,8 @@ class KeynoteController extends Controller
         $data->update([
             'company_id' => $request->company_id,
             'narasumber' => $request->narasumber,
-            'tema' => $request->tema
+            'tema' => $request->tema,
+            'url' => $request->url
         ]);
 
         if ($data) {

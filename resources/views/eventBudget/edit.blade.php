@@ -58,7 +58,6 @@
                               </span>
                             @enderror
                           </div>
-                          <a href="">{{$data->file}}</a>
                         </div>
                         <a href="{{route('eventBudget.download', $data->id)}}">{{$data->file}}</a>
                     </div>

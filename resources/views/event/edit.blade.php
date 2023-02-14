@@ -150,7 +150,7 @@
                                       @foreach($dataEb as $item)
                                         <tr style="text-align:center;">
                                           <td title="{{$item->jenis_pengeluaran	}}">{!! Str::limit($item->jenis_pengeluaran, 40) !!}</td>
-                                          <td> {{$item->nominal}} </td>
+                                          <td>@currency($item->nominal)</td>
                                           <td title="">
                                               <form action="#" method="POST">
                                                   <a href=" {{route('eventBudget.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
@@ -187,7 +187,7 @@
                               <tr style="text-align:center;">
                                 <td title="{{$item->getCompany->company_name	}}">{!! Str::limit($item->getCompany->company_name, 40) !!}</td>
                                 <td title="{{$item->benefit_sponsor	}}">{!! Str::limit($item->benefit_sponsor, 40) !!}</td>
-                                <td> {{$item->nominal}} </td>
+                                <td>@currency($item->nominal)</td>
                                 <td title="">
                                     <form action="#" method="POST">
                                         <a href=" {{route('sponsor.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>

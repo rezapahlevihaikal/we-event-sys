@@ -14,6 +14,7 @@ class Keynote extends Model
     protected $fillable = [
         'event_id',
         'narasumber',
-        'tema'
+        'tema',
+        'url'
     ];
 }
