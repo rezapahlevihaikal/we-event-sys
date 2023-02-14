@@ -80,6 +80,7 @@ Route::prefix('dailyTask')->group(function(){
 	Route::post('store/{id}', [DailyTaskController::class, 'store'])->name('dailyTask.store');
 	Route::get('edit/{id}', [DailyTaskController::class, 'edit'])->name('dailyTask.edit');
 	Route::post('update/{id}', [DailyTaskController::class, 'update'])->name('dailyTask.update');
+	Route::get('download/{id}', [DailyTaskController::class, 'getFileDaily'])->name('dailyTask.download');
 });
 
 Route::prefix('dokumentasi')->group(function(){

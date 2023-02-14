@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah Data Event</h1>
+            <h1>Tambah Data Budget</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -61,11 +61,12 @@
                         </div>
                       </div>
                     </div>
-                    </div>
                     <br>
-                    <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
-                    <button class="btn btn-primary" type="submit">Create Data</button>
-                  </form>
+                      <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
+                      <button class="btn btn-primary" type="submit">Create Data</button>
+                    </form>
+                    </div>
+                    
               </div>
               <!-- /.card-body -->
             </div>

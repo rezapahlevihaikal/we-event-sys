@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DailyTask;
 use App\Models\Event;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class DailyTaskController extends Controller
@@ -129,8 +131,8 @@ class DailyTaskController extends Controller
 
         if ($request->has('file')) {
             $filename = $headerNameDoc."_".uniqid()."_".$end.".".$request->file->getClientOriginalExtension();
-            File::delete(public_path('uploads/budget'), $data->file);
-            $request->file->move(public_path('uploads/budget'), $filename);
+            File::delete(public_path('uploads/daily_task'), $data->file);
+            $request->file->move(public_path('uploads/daily_task'), $filename);
         }
         else {
             $filename = $data->file;
@@ -150,6 +152,14 @@ class DailyTaskController extends Controller
         } else {
             return redirect()->back()->withErrors('data gagal diupdate');
         }
+    }
+
+    public function getFileDaily($id)
+    {
+        $data = DailyTask::where('id', $id)->first();
+        $filePath = public_path('uploads/daily_task/'. $data->file);
+        // dd($filePath);
+        return response()->download($filePath);
     }
 
     /**

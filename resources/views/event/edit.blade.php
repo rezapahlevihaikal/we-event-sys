@@ -333,8 +333,8 @@
                         <div class="card-columns">
                             @foreach($doc as $photo)
                                 <div class="card">
-                                    <a class="thumbnail fancybox" rel="ligthbox" href="/uploads/{{ $photo->file }}">
-                                      <img class="card-img-top" src="/uploads/{{$photo->file}}" alt="Card image cap">
+                                    <a class="thumbnail fancybox" rel="ligthbox" href="/uploads/documentation/{{ $photo->file }}">
+                                      <img class="card-img-top" src="/uploads/documentation/{{$photo->file}}" alt="Card image cap">
                                       <div class='text-center'>
                                         <small class='text-muted'>{{ $photo->title }}</small>
                                       </div> <!-- text-center / end -->
