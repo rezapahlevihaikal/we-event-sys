@@ -128,7 +128,7 @@ class EventController extends Controller
         $data = Event::find($id);
         $dataProduct = Product::get(['id', 'name']);
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
-        $dataWorkflow = EventWorkflow::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataWorkflow = EventWorkflow::where('event_id', '=', $data->id)->where('status_id', '=', '1')->orderBy('id')->get();
         $dataEb = EventBudget::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         $dataS = Sponsor::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         $dataK = Keynote::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();

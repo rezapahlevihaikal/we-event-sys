@@ -141,7 +141,7 @@
                     </div>
                       <br>
                     <!-- /.card-header -->
-                      <table id="event_budget" class="table table-bordered table-hover">
+                      <table id="workflow" class="table table-bordered table-hover">
                         <thead>
                         <tr>
                           <th>Workflow</th>
@@ -404,17 +404,20 @@
 @push('js')
 <script type="text/javascript">
     $(document).ready( function () {
+        $('#workflow').DataTable({
+          ordering: false,
+        });
         $('#event_budget').DataTable({
-          
+          ordering: false,
         });
         $('#sponsor').DataTable({
-          
+          ordering: false,
         });
         $('#keynote').DataTable({
-          
+          ordering: false,
         });
         $('#daily_task').DataTable({
-          
+          ordering: false,
         });
         $('#doc').DataTable({
           
