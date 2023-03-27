@@ -31,6 +31,9 @@
                     <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Event</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-workflow-tab" data-toggle="pill" href="#custom-tabs-one-workflow" role="tab" aria-controls="custom-tabs-one-workflow" aria-selected="false">Workflow</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Budget</a>
                   </li>
                   <li class="nav-item">
@@ -129,6 +132,45 @@
                         <button class="btn btn-primary" type="submit">Create Data</button>
                       </form>
                   </div>
+                   {{-- WORKFLOW --}}
+                   <div class="tab-pane fade" id="custom-tabs-one-workflow" role="tabpanel" aria-labelledby="custom-tabs-one-workflow-tab">
+                    <div class="header">
+                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/eventWorkflow/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                        Tambah Data
+                      </button>
+                    </div>
+                      <br>
+                    <!-- /.card-header -->
+                      <table id="event_budget" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                          <th>Workflow</th>
+                          <th>Percentage</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($dataWorkflow as $item)
+                            <tr style="text-align:center;">
+                              <td title="{{$item->getWorkflow->name	}}">{!! Str::limit($item->getWorkflow->name, 40) !!}</td>
+                              <td> {{$item->percentage}}% </td>
+                              <td>
+                                  {{$item->start_date}} - {{$item->end_date}}
+                              </td>
+                              <td title="">
+                                  <form action="{{route('eventWorkflow.destroy', $item->id)}}" method="POST">
+                                      <a href=" {{route('eventWorkflow.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
+                                      @csrf
+                                      @method('post')
+                                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?');"><i class="fas fa-trash"></i></button></td>
+                                  </form>
+                              </td>
+                            </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                  </div>
                   {{-- EVENT BUDGET --}}
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                                 <div class="header">
@@ -152,11 +194,11 @@
                                           <td title="{{$item->jenis_pengeluaran	}}">{!! Str::limit($item->jenis_pengeluaran, 40) !!}</td>
                                           <td>@currency($item->nominal)</td>
                                           <td title="">
-                                              <form action="#" method="POST">
+                                              <form action="{{route('eventBudget.destroy', $item->id)}}" method="POST">
                                                   <a href=" {{route('eventBudget.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                                   @csrf
                                                   @method('post')
-                                                  {{-- <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td> --}}
+                                                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
                                               </form>
                                           </td>
                                         </tr>
@@ -189,11 +231,11 @@
                                 <td title="{{$item->benefit_sponsor	}}">{!! Str::limit($item->benefit_sponsor, 40) !!}</td>
                                 <td>@currency($item->nominal)</td>
                                 <td title="">
-                                    <form action="#" method="POST">
+                                    <form action="{{route('sponsor.destroy', $item->id)}}" method="POST">
                                         <a href=" {{route('sponsor.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                         @csrf
                                         @method('post')
-                                        {{-- <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td> --}}
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
                                     </form>
                                 </td>
                               </tr>
@@ -224,11 +266,11 @@
                               <td title="{{$item->narasumber}}">{!! Str::limit($item->narasumber, 40) !!}</td>
                               <td title="{{$item->tema}}">{!! Str::limit($item->tema, 40) !!}</td>
                               <td title="">
-                                  <form action="#" method="POST">
+                                  <form action="{{route('keynote.destroy', $item->id)}}" method="POST">
                                       <a href=" {{route('keynote.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                       @csrf
                                       @method('post')
-                                      {{-- <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td> --}}
+                                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
                                   </form>
                               </td>
                             </tr>
@@ -270,11 +312,11 @@
                               <td title="{{$item->pic}}">{!! Str::limit($item->pic, 40) !!}</td>
                               <td title="{{$item->kegiatan}}">{!! Str::limit($item->kegiatan, 40) !!}</td>
                               <td title="">
-                                  <form action="#" method="POST">
+                                  <form action="{{route('dailyTask.destroy', $item->id)}}" method="POST">
                                       <a href=" {{route('dailyTask.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                       @csrf
                                       @method('post')
-                                      {{-- <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td> --}}
+                                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
                                   </form>
                               </td>
                             </tr>
@@ -339,7 +381,7 @@
                                         <small class='text-muted'>{{ $photo->title }}</small>
                                       </div> <!-- text-center / end -->
                                     </a>
-                                    <form action="#" method="POST">
+                                    <form action="{{route('dokumentasi.destroy', $photo->id)}}" method="POST">
                                       <input type="hidden" name="_method" value="delete">
                                       {!! csrf_field() !!}
                                       <button type="submit" class="close-icon btn btn-danger"><i class="fas fa-minus-circle"></i></button>

@@ -78,6 +78,7 @@ class EventBudgetController extends Controller
         }
 
         $data = EventBudget::create([
+            'status_id' => 1,
             'event_id' => $dataEvent->id,
             'jenis_pengeluaran' => $request->jenis_pengeluaran,
             'nominal' => str_replace('.', '', $request->nominal),
@@ -173,6 +174,11 @@ class EventBudgetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = EventBudget::find($id);
+        $data->update([
+            'status_id' => 0
+        ]);
+
+        return redirect()->back()->with('success', 'data berhasil dihapus');
     }
 }

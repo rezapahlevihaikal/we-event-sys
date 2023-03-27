@@ -5,28 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sponsor extends Model
+class EventWorkflow extends Model
 {
     use HasFactory;
 
-    protected $table = 'sponsors';
+    protected $table = 'event_workflows';
 
     protected $fillable = [
         'status_id',
         'event_id',
-        'company_id',
-        'nominal',
-        'benefit_sponsor'
+        'workflow_id',
+        'start_date',
+        'end_date',
+        'percentage',
+        'desc'
     ];
 
-    public function getEvent()
+    public function getEventId()
     {
         return $this->belongsTo('App\Models\Event', 'event_id', 'id');
     }
 
-    public function getCompany()
+    public function getWorkflow()
     {
-        return $this->belongsTo('App\Models\Companies', 'company_id', 'id');
+        return $this->belongsTo('App\Models\Workflow', 'workflow_id', 'id');
     }
-
 }

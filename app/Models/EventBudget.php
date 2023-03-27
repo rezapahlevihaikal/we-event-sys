@@ -12,6 +12,7 @@ class EventBudget extends Model
     protected $table = 'event_budget';
 
     protected $fillable = [
+        'status_id',
         'event_id',
         'jenis_pengeluaran',
         'nominal',

@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Keynote extends Model
+class Workflow extends Model
 {
     use HasFactory;
 
-    protected $table = 'keynotes';
+    protected $table = 'workflows';
 
     protected $fillable = [
-        'status_id',
-        'event_id',
-        'narasumber',
-        'tema',
-        'url'
+        'name'
     ];
 }

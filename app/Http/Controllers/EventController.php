@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\EventBudget;
 use App\Models\TipeEvent;
 use App\Models\Product;
+use App\Models\Workflow;
+use App\Models\EventWorkflow;
 use App\Models\Sponsor;
 use App\Models\Keynote;
 use App\Models\DailyTask;
@@ -31,7 +33,7 @@ class EventController extends Controller
     public function index()
     {
         //
-        $data = Event::latest('id')->get();
+        $data =Event::where('status_id', '=', '1')->latest('id')->get();
         return view('event.index', compact('data'));
     }
 
@@ -84,6 +86,7 @@ class EventController extends Controller
         
 
         $data = Event::create([
+            'status_id' => 1,
             'tipe_id' => $request->tipe_id,
             'tema'    => $request->tema,
             'product_id' => $request->product_id,
@@ -125,13 +128,14 @@ class EventController extends Controller
         $data = Event::find($id);
         $dataProduct = Product::get(['id', 'name']);
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
-        $dataEb = EventBudget::where('event_id', '=', $data->id)->latest('created_at')->get();
-        $dataS = Sponsor::where('event_id', '=', $data->id)->latest('created_at')->get();
-        $dataK = Keynote::where('event_id', '=', $data->id)->latest('created_at')->get();
-        $dataD = DailyTask::where('event_id', '=', $data->id)->latest('created_at')->get();
-        $doc = Dokumentasi::where('event_id', '=', $data->id)->latest('created_at')->get();
+        $dataWorkflow = EventWorkflow::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataEb = EventBudget::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataS = Sponsor::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataK = Keynote::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $doc = Dokumentasi::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         
-        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc'));
+        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'dataWorkflow', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc'));
     }
 
     /**
@@ -195,6 +199,7 @@ class EventController extends Controller
         $input['file'] = 'doc'.'_'.time().'.'.$request->file->getClientOriginalExtension();
         $request->file->move(public_path('uploads/documentation'), $input['file']);
 
+        $input['status_id'] = 1;
         $input['event_id'] = $dataEvent->id;
         $input['title'] = $request->title;
         Dokumentasi::create($input);
@@ -221,7 +226,9 @@ class EventController extends Controller
     public function destroy($id)
     {
         $data = Event::find($id);
-        $data->delete();
+        $data->update([
+            'status_id' => 0
+        ]);
         return redirect()->back()->with('success', 'data berhasil dihapus');
     }
 

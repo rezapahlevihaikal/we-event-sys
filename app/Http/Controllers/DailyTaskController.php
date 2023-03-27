@@ -71,6 +71,7 @@ class DailyTaskController extends Controller
 
 
         $data = DailyTask::create([
+            'status_id' => 1,
             'event_id' => $dataEvent->id,
             'tanggal' => $request->tanggal,
             'pic' => $request->pic,
@@ -171,5 +172,11 @@ class DailyTaskController extends Controller
     public function destroy($id)
     {
         //
+        $data = DailyTask::find($id);
+        $data->update([
+            'status_id' => 0
+        ]);
+
+        return redirect()->back()->with('success','data berhasil dihapus');
     }
 }

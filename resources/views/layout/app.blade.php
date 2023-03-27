@@ -243,6 +243,15 @@
               </p>
             </a>
           </li>          
+          <li class="nav-item">
+            {{-- <a href="pages/kanban.html" class="nav-link"> --}}
+              <a href=" {{route('workflow')}} " class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>
+                Workflow
+              </p>
+            </a>
+          </li>    
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

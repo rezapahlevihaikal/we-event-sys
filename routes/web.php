@@ -8,6 +8,8 @@ use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\KeynoteController;
 use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\DokumentasiController;
+use App\Http\Controllers\WorkflowController;
+use App\Http\Controllers\EventWorkflowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,14 @@ Route::prefix('tipeEvent')->group(function(){
 	Route::post('delete/{id}', [TipeEventController::class, 'destroy'])->name('tipeEvent.destroy');
 });
 
+Route::prefix('workflow')->group(function(){
+	Route::get('/', [WorkflowController::class, 'index'])->name('workflow');
+	Route::post('store', [WorkflowController::class, 'store'])->name('workflow.store');
+	Route::get('edit/{id}', [WorkflowController::class, 'edit'])->name('workflow.edit');
+	Route::post('update/{id}', [WorkflowController::class, 'update'])->name('workflow.update');
+	Route::post('delete/{id}', [WorkflowController::class, 'destroy'])->name('workflow.destroy');
+});
+
 Route::prefix('event')->group(function(){
 	Route::get('/', [EventController::class, 'index'])->name('event');
 	Route::get('create', [EventController::class, 'create'])->name('event.create');
@@ -56,6 +66,7 @@ Route::prefix('eventBudget')->group(function(){
 	Route::get('edit/{id}', [EventBudgetController::class, 'edit'])->name('eventBudget.edit');
 	Route::post('update/{id}', [EventBudgetController::class, 'update'])->name('eventBudget.update');
 	Route::get('download/{id}', [EventBudgetController::class, 'getFileBudget'])->name('eventBudget.download');
+	Route::post('delete/{id}', [EventBudgetController::class, 'destroy'])->name('eventBudget.destroy');
 });
 
 Route::prefix('sponsor')->group(function(){
@@ -64,6 +75,7 @@ Route::prefix('sponsor')->group(function(){
 	Route::post('store/{id}', [SponsorController::class, 'store'])->name('sponsor.store');
 	Route::get('edit/{id}', [SponsorController::class, 'edit'])->name('sponsor.edit');
 	Route::post('update/{id}', [SponsorController::class, 'update'])->name('sponsor.update');
+	Route::post('delete/{id}', [SponsorController::class, 'destroy'])->name('sponsor.destroy');
 });
 
 Route::prefix('keynote')->group(function(){
@@ -72,6 +84,7 @@ Route::prefix('keynote')->group(function(){
 	Route::post('store/{id}', [KeynoteController::class, 'store'])->name('keynote.store');
 	Route::get('edit/{id}', [KeynoteController::class, 'edit'])->name('keynote.edit');
 	Route::post('update/{id}', [KeynoteController::class, 'update'])->name('keynote.update');
+	Route::post('delete/{id}', [KeynoteController::class, 'destroy'])->name('keynote.destroy');
 });
 
 Route::prefix('dailyTask')->group(function(){
@@ -81,6 +94,7 @@ Route::prefix('dailyTask')->group(function(){
 	Route::get('edit/{id}', [DailyTaskController::class, 'edit'])->name('dailyTask.edit');
 	Route::post('update/{id}', [DailyTaskController::class, 'update'])->name('dailyTask.update');
 	Route::get('download/{id}', [DailyTaskController::class, 'getFileDaily'])->name('dailyTask.download');
+	Route::post('delete/{id}', [DailyTaskController::class, 'destroy'])->name('dailyTask.destroy');
 });
 
 Route::prefix('dokumentasi')->group(function(){
@@ -89,4 +103,14 @@ Route::prefix('dokumentasi')->group(function(){
 	Route::post('store/{id}', [DokumentasiController::class, 'store'])->name('dokumentasi.store');
 	Route::get('edit/{id}', [DokumentasiController::class, 'edit'])->name('dokumentasi.edit');
 	Route::post('update/{id}', [DokumentasiController::class, 'update'])->name('dokumentasi.update');
+	Route::post('delete/{id}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
+});
+
+Route::prefix('eventWorkflow')->group(function(){
+	Route::get('/', [EventWorkflowController::class, 'index'])->name('eventWorkflow');
+	Route::get('create/{id}', [EventWorkflowController::class, 'create'])->name('eventWorkflow.create');
+	Route::post('store/{id}', [EventWorkflowController::class, 'store'])->name('eventWorkflow.store');
+	Route::get('edit/{id}', [EventWorkflowController::class, 'edit'])->name('eventWorkflow.edit');
+	Route::post('update/{id}', [EventWorkflowController::class, 'update'])->name('eventWorkflow.update');
+	Route::post('delete/{id}', [EventWorkflowController::class, 'destroy'])->name('eventWorkflow.destroy');
 });

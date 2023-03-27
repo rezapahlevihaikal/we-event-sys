@@ -51,6 +51,7 @@ class SponsorController extends Controller
         $dataEvent = Event::find($id);
 
         $data = Sponsor::create([
+            'status_id' => 1,
             'event_id' => $dataEvent->id,
             'company_id' => $request->company_id,
             'nominal' => str_replace('.', '', $request->nominal),
@@ -122,5 +123,11 @@ class SponsorController extends Controller
     public function destroy($id)
     {
         //
+        $data = Sponsor::find($id);
+        $data->update([
+            'status_id' => 0
+        ]);
+
+        return redirect()->back()->with('success', 'data berhasil dihapus');
     }
 }

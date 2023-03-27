@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Keynote;
+use App\Models\EventWorkflow;
+use App\Models\Workflow;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
-class KeynoteController extends Controller
+class EventWorkflowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +27,9 @@ class KeynoteController extends Controller
     public function create($id)
     {
         //
+        $dataWorkflow = Workflow::get(['id','name']);
         $dataEvent = Event::findOrFail($id);
-        return view('keynote.create', compact('dataEvent'));
+        return view('event_workflow.create', compact('dataEvent', 'dataWorkflow'));
     }
 
     /**
@@ -38,17 +40,18 @@ class KeynoteController extends Controller
      */
     public function store(Request $request, $id)
     {
-        //
         $dataEvent = Event::find($id);
-        $data = Keynote::create([
+        $eWorkflow = EventWorkflow::create([
             'status_id' => 1,
             'event_id' => $dataEvent->id,
-            'narasumber' => $request->narasumber,
-            'tema' => $request->tema,
-            'url' => $request->url
+            'workflow_id' => $request->workflow_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'percentage' => $request->percentage,
+            'desc' => $request->desc
         ]);
 
-        if ($data) {
+        if ($eWorkflow) {
             return redirect()->route('event.edit', $dataEvent->id)->withStatus('data berhasil diinput');
         } else {
             return redirect()->back()->withErrors('data gagal diinput');
@@ -58,48 +61,45 @@ class KeynoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Keynote  $keynote
+     * @param  \App\Models\EventWorkflow  $eventWorkflow
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(EventWorkflow $eventWorkflow)
     {
         //
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Keynote  $keynote
+     * @param  \App\Models\EventWorkflow  $eventWorkflow
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
-
-        $data = Keynote::find($id);
-        return view('keynote.edit', compact('data'));
+        $eWorkflow = EventWorkflow::find($id);
+        return view('event_workflow.edit', compact('eWorkflow'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Keynote  $keynote
+     * @param  \App\Models\EventWorkflow  $eventWorkflow
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
-        $data = Keynote::find($id);
-        $data->update([
-            'company_id' => $request->company_id,
-            'narasumber' => $request->narasumber,
-            'tema' => $request->tema,
-            'url' => $request->url
+        $eWorkflow = EventWorkflow::find($id);
+        $eWorkflow->update([
+            'workflow_id' => $request->workflow_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'percentage' => $request->percentage,
+            'desc' => $request->desc
         ]);
 
-        if ($data) {
+        if ($eWorkflow) {
             return redirect()->route('event')->withStatus('data berhasil diupdate');
         } else {
             return redirect()->back()->withErrors('data gagal diupdate');
@@ -109,14 +109,13 @@ class KeynoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Keynote  $keynote
+     * @param  \App\Models\EventWorkflow  $eventWorkflow
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
-        $data = Keynote::find($id);
-        $data->update([
+        $eWorkflow = EventWorkflow::find($id);
+        $eWorkflow->update([
             'status_id' => 0
         ]);
 

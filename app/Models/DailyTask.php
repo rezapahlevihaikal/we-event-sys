@@ -12,6 +12,7 @@ class DailyTask extends Model
     protected $table = 'daily_tasks';
 
     protected $fillable = [
+        'status_id',
         'event_id',
         'tanggal',
         'pic',

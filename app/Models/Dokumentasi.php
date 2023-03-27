@@ -12,6 +12,7 @@ class Dokumentasi extends Model
     protected $table = 'documentation';
 
     protected $fillable = [
+        'status_id',
         'event_id',
         'title',
         'keterangan',
