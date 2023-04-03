@@ -10,6 +10,7 @@ use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\WorkflowController;
 use App\Http\Controllers\EventWorkflowController;
+use App\Http\Controllers\DetailWorkflowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,3 +115,15 @@ Route::prefix('eventWorkflow')->group(function(){
 	Route::post('update/{id}', [EventWorkflowController::class, 'update'])->name('eventWorkflow.update');
 	Route::post('delete/{id}', [EventWorkflowController::class, 'destroy'])->name('eventWorkflow.destroy');
 });
+
+Route::prefix('detailWorkflow')->group(function(){
+	Route::get('/', [DetailWorkflowController::class, 'index'])->name('detailWorkflow');
+	Route::get('create/{id}', [DetailWorkflowController::class, 'create'])->name('detailWorkflow.create');
+	Route::post('store', [DetailWorkflowController::class, 'store'])->name('detailWorkflow.store');
+	Route::get('edit/{id}', [DetailWorkflowController::class, 'edit'])->name('detailWorkflow.edit');
+	Route::post('update/{id}', [DetailWorkflowController::class, 'update'])->name('detailWorkflow.update');
+	Route::post('delete/{id}', [DetailWorkflowController::class, 'destroy'])->name('detailWorkflow.destroy');
+});
+
+Route::post('api/fetch-states', [DailyTaskController::class, 'fetchWorkflow']);
+Route::post('api/fetch-cities', [DailyTaskController::class, 'fetchDetail']);

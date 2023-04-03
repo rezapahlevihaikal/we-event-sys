@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DailyTask;
 use App\Models\Event;
+use App\Models\Workflow;
+use App\Models\DetailWorkflow;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -28,8 +30,10 @@ class DailyTaskController extends Controller
     public function create($id)
     {
         //
+        $workflow = Workflow::get(['id', 'name']);
+        $detail = DetailWorkflow::get(['id', 'detail']);
         $dataEvent = Event::findOrFail($id);
-        return view('dailyTask.create', compact('dataEvent'));
+        return view('dailyTask.create', compact( 'workflow', 'detail' ,'dataEvent'));
     }
 
     /**
@@ -71,6 +75,8 @@ class DailyTaskController extends Controller
 
 
         $data = DailyTask::create([
+            'workflow_id' => $request->workflow_id,
+            'detail_id' => $request->detail_id,
             'status_id' => 1,
             'event_id' => $dataEvent->id,
             'tanggal' => $request->tanggal,
@@ -178,5 +184,21 @@ class DailyTaskController extends Controller
         ]);
 
         return redirect()->back()->with('success','data berhasil dihapus');
+    }
+
+    public function fetchWorkflow(Request $request)
+    {
+        $data['name'] = Workflow::where("workflow_id", $request->workflow_id)
+                                ->get(["name", "id"]);
+  
+        return response()->json($data);
+    }
+
+    public function fetchDetail(Request $request)
+    {
+        $data['detail'] = DetailWorkflow::where("workflow_id", $request->workflow_id)
+                                    ->get(["detail", "id"]);
+                                      
+        return response()->json($data);
     }
 }

@@ -13,6 +13,8 @@ class DailyTask extends Model
 
     protected $fillable = [
         'status_id',
+        'workflow_id',
+        'detail_id',
         'event_id',
         'tanggal',
         'pic',

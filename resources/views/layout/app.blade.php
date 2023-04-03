@@ -252,6 +252,15 @@
               </p>
             </a>
           </li>    
+          <li class="nav-item">
+            {{-- <a href="pages/kanban.html" class="nav-link"> --}}
+              <a href=" {{route('detailWorkflow')}} " class="nav-link">
+                <i class="nav-icon fas fa-info-circle"></i>
+              <p>
+                Detail Workflow
+              </p>
+            </a>
+          </li>    
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

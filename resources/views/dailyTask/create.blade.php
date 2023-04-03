@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah Data Sponsor</h1>
+            <h1>Tambah Data Daily Task</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -30,6 +30,26 @@
                 <form class="" action="{{ route('dailyTask.store', $dataEvent->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
+                    <div class="row">
+                        <div class="col">
+                          <label for="demo_overview_minimal">Workflow</label>
+                          <select data-live-search="true" id="workflow" class="form-control" data-role="select-dropdown" data-profile="minimal" name="workflow_id" value="" selected="">
+                              <option value="">PILIH WORKFLOW</option>
+                              @foreach ($workflow as $item)
+                              <option value="{{ $item->id }}">{!! Str::limit($item->name, 60) !!}</option>
+                              @endforeach
+                          </select>
+                        </div>
+                        <div class="col">
+                          <label for="demo_overview_minimal">Detail</label>
+                          <select data-live-search="true" id="detail" class="form-control" data-role="select-dropdown" data-profile="minimal" name="detail_id" value="" selected="">
+                              <option value="">PILIH DETAIL</option>
+                              @foreach ($detail as $item)
+                              <option value="{{ $item->id }}">{!! Str::limit($item->detail, 60) !!}</option>
+                              @endforeach
+                          </select>
+                        </div>
+                    </div>
                     <div class="row" style="padding-top: 10px">
                         <div class="col">
                             <label for="formGroupExampleInput2">Tanggal</label>
@@ -88,5 +108,33 @@
   </div>
 @endsection
 @push('js')
-
+  <script>
+        //  $(document).ready(function () {
+  
+        //   /*------------------------------------------
+        //   --------------------------------------------
+        //   Country Dropdown Change Event
+        //   --------------------------------------------
+        //   --------------------------------------------*/
+        //   $('#workflow').on('change', function () {
+        //       var idCountry = this.value;
+        //       $("#detail").html('');
+        //       $.ajax({
+        //           url: "{{url('api/fetch-cities')}}",
+        //           type: "POST",
+        //           data: {
+        //               country_id: idCountry,
+        //               _token: '{{csrf_token()}}'
+        //           },
+        //           dataType: 'json',
+        //           success: function (result) {
+        //               $('#detail').html('<option value="">-- Select State --</option>');
+        //               $.each(result.states, function (key, value) {
+        //                   $("#detail").append('<option value="' + value
+        //                       .id + '">' + value.name + '</option>');
+        //               });
+        //           }
+        //       });
+        //   });
+  </script>
 @endpush
