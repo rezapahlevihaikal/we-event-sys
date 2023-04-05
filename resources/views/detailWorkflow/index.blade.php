@@ -12,7 +12,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Config</a></li>
-              <li class="breadcrumb-item active">Tipe Event</li>
+              <li class="breadcrumb-item active">Detail Workflow</li>
             </ol>
           </div>
         </div>
@@ -52,11 +52,20 @@
                                     @endforeach
                                 </select>
                               </div>
-                              <div class="col">
+                              <div class="col" style="padding-top: 10px">
+                                <label for="demo_overview_minimal">Tipe Event</label>
+                                <select data-live-search="true" id="product" class="form-control" data-role="select-dropdown" data-profile="minimal" name="tipe_event_id" value="" selected="">
+                                    <option value="">PILIH TIPE EVENT</option>
+                                    @foreach ($tipeEvent as $item)
+                                    <option value="{{ $item->id }}">{!! Str::limit($item->name, 60) !!}</option>
+                                    @endforeach
+                                </select>
+                              </div>
+                              <div class="col" style="padding-top: 10px">
                                 <label for="demo_overview_minimal">Detail</label>
                                 <textarea class="form-control" name="detail" id="" cols="20" rows="10"></textarea>
                               </div>
-                              <div class="col">
+                              <div class="col" style="padding-top: 10px">
                                 <label for="demo_overview_minimal">Bobot</label>
                                 <input type="text" name="bobot" class="form-control">
                               </div>
@@ -85,7 +94,7 @@
                     @foreach($data as $item)
                       <tr style="text-align:center;">
                         <td title="{{$item->getWorkflow->name}}">
-                          {!! Str::limit($item->getWorkflow->name, 40) !!} <br>
+                          {!! Str::limit($item->getWorkflow->name, 40) !!} - {{$item->getTipe->name ?? '#'}} <br>
                           {{$item->bobot}}
                         </td>
                         <td> {!! Str::limit($item->detail, 40) !!} </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailWorkflow;
 use App\Models\Workflow;
+use App\Models\TipeEvent;
 use Illuminate\Http\Request;
 
 class DetailWorkflowController extends Controller
@@ -17,8 +18,9 @@ class DetailWorkflowController extends Controller
     {
         //
         $workflow = Workflow::get(['id', 'name']);
+        $tipeEvent = TipeEvent::get(['id', 'name']);
         $data = DetailWorkflow::all();
-        return view('detailWorkflow.index', compact('workflow', 'data'));
+        return view('detailWorkflow.index', compact('workflow', 'tipeEvent' ,'data'));
     }
 
     /**
@@ -43,6 +45,7 @@ class DetailWorkflowController extends Controller
         //
         $data = DetailWorkflow::create([
             'workflow_id' => $request->workflow_id,
+            'tipe_event_id' => $request->tipe_event_id,
             'detail'      => $request->detail,
             'bobot'       => $request->bobot
         ]);
@@ -76,8 +79,9 @@ class DetailWorkflowController extends Controller
     {
         //
         $workflow = Workflow::get(['id', 'name']);
-        $data = DetailWorkflow::all();
-        return view('detailWorkflow.edit', compact('workflow', 'data'));
+        $tipeEvent = TipeEvent::get(['id', 'name']);
+        $data = DetailWorkflow::find($id);
+        return view('detailWorkflow.edit', compact('workflow', 'tipeEvent' ,'data'));
     }
 
     /**
@@ -93,6 +97,7 @@ class DetailWorkflowController extends Controller
         $data = DetailWorkflow::find($id);
         $data->update([
             'workflow_id' => $request->workflow_id,
+            'tipe_event_id' => $request->tipe_event_id,
             'detail'      => $request->detail,
             'bobot'       => $request->bobot
         ]);

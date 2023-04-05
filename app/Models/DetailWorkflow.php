@@ -12,6 +12,7 @@ class DetailWorkflow extends Model
     protected $table = 'detail_workflows';
     protected $fillable = [
         'workflow_id',
+        'tipe_event_id',
         'detail',
         'bobot'
     ];
@@ -19,5 +20,10 @@ class DetailWorkflow extends Model
     public function getWorkflow()
     {
         return $this->belongsTo('App\Models\Workflow', 'workflow_id', 'id');
+    }
+
+    public function getTipe()
+    {
+        return $this->belongsTo('App\Models\TipeEvent', 'tipe_event_id', 'id');
     }
 }
