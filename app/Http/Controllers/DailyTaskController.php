@@ -31,7 +31,8 @@ class DailyTaskController extends Controller
     {
         //
         $workflow = Workflow::get(['id', 'name']);
-        $detail = DetailWorkflow::get(['id', 'detail']);
+        // $tipeEvent = TipeEvent::get(['id', 'name']);
+        $detail = DetailWorkflow::get(['id', 'tipe_event_id','detail']);
         $dataEvent = Event::findOrFail($id);
         return view('dailyTask.create', compact( 'workflow', 'detail' ,'dataEvent'));
     }
