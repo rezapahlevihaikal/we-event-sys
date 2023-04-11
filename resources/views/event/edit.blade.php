@@ -153,8 +153,11 @@
                         <tbody>
                           @foreach($dataWorkflow as $item)
                             <tr style="text-align:center;">
-                              <td title="{{$item->getWorkflow->name	}}">{!! Str::limit($item->getWorkflow->name, 40) !!}</td>
-                              <td> {{$item->percentage}}% </td>
+                              <td title="{{$item->getWorkflow->name	}}">
+                                {!! Str::limit($item->getWorkflow->name, 40) !!} <br>
+                                {{$item->percentage}}%
+                              </td>
+                              <td title="{{$item->desc	}}"> {!! Str::limit($item->desc, 40) !!} </td>
                               <td>
                                   {{$item->start_date}} - {{$item->end_date}}
                               </td>

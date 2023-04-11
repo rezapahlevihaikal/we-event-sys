@@ -77,8 +77,9 @@ class EventWorkflowController extends Controller
      */
     public function edit($id)
     {
+        $dataWorkflow = Workflow::get(['id','name']);
         $eWorkflow = EventWorkflow::find($id);
-        return view('event_workflow.edit', compact('eWorkflow'));
+        return view('event_workflow.edit', compact('eWorkflow', 'dataWorkflow'));
     }
 
     /**
