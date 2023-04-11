@@ -109,32 +109,8 @@
 @endsection
 @push('js')
   <script>
-        //  $(document).ready(function () {
-  
-        //   /*------------------------------------------
-        //   --------------------------------------------
-        //   Country Dropdown Change Event
-        //   --------------------------------------------
-        //   --------------------------------------------*/
-        //   $('#workflow').on('change', function () {
-        //       var idCountry = this.value;
-        //       $("#detail").html('');
-        //       $.ajax({
-        //           url: "{{url('api/fetch-cities')}}",
-        //           type: "POST",
-        //           data: {
-        //               country_id: idCountry,
-        //               _token: '{{csrf_token()}}'
-        //           },
-        //           dataType: 'json',
-        //           success: function (result) {
-        //               $('#detail').html('<option value="">-- Select State --</option>');
-        //               $.each(result.states, function (key, value) {
-        //                   $("#detail").append('<option value="' + value
-        //                       .id + '">' + value.name + '</option>');
-        //               });
-        //           }
-        //       });
-        //   });
+        $(document).ready(function () {
+          $('#detail').selectpicker();
+        });
   </script>
 @endpush
