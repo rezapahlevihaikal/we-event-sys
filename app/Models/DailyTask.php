@@ -27,4 +27,9 @@ class DailyTask extends Model
     {
         return $this->belongsTo('App\Models\Event', 'event_id', 'id');
     }
+
+    public function getWorkflow()
+    {
+        return $this->belongsTo('App\Models\Workflow', 'workflow_id', 'id');
+    }
 }

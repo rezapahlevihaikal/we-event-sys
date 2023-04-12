@@ -114,8 +114,10 @@ class DailyTaskController extends Controller
     public function edit($id)
     {
         //
+        $workflow = Workflow::get(['id', 'name']);
+        $detail = DetailWorkflow::get(['id', 'tipe_event_id','detail']);
         $data = DailyTask::find($id);
-        return view('dailyTask.edit', compact('data'));
+        return view('dailyTask.edit', compact('data', 'detail', 'workflow'));
     }
 
     /**
@@ -148,6 +150,8 @@ class DailyTaskController extends Controller
 
         $data = DailyTask::find($id);
         $data->update([
+            'workflow_id' => $request->workflow_id,
+            'detail_id' => $request->detail_id,
             'tanggal' => $request->tanggal,
             'pic' => $request->pic,
             'kegiatan' => $request->kegiatan,
