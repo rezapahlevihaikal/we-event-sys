@@ -236,7 +236,7 @@
           <li class="nav-header">CONFIG</li>
           <li class="nav-item">
             {{-- <a href="pages/kanban.html" class="nav-link"> --}}
-              <a href=" {{route('tipeEvent')}} " class="nav-link">
+              <a href=" {{route('tipeEvent')}} " class="nav-link {{ request()->is('tipeEvent') ? 'active' : '' }}">
               <i class="nav-icon fas fa-wave-square"></i>
               <p>
                 Tipe Event
@@ -245,7 +245,7 @@
           </li>          
           <li class="nav-item">
             {{-- <a href="pages/kanban.html" class="nav-link"> --}}
-              <a href=" {{route('workflow')}} " class="nav-link">
+              <a href=" {{route('workflow')}} " class="nav-link {{ request()->is('workflow') ? 'active' : '' }}">
               <i class="nav-icon fas fa-briefcase"></i>
               <p>
                 Workflow
@@ -254,7 +254,7 @@
           </li>    
           <li class="nav-item">
             {{-- <a href="pages/kanban.html" class="nav-link"> --}}
-              <a href=" {{route('detailWorkflow')}} " class="nav-link">
+              <a href=" {{route('detailWorkflow')}} " class="nav-link {{ request()->is('detailWorkflow') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-info-circle"></i>
               <p>
                 Detail Workflow
