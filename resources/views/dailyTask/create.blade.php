@@ -45,7 +45,7 @@
                           <select data-live-search="true" id="detail" class="form-control" data-role="select-dropdown" data-profile="minimal" name="detail_id" value="" selected="">
                               <option value="">PILIH DETAIL</option>
                               @foreach ($detail as $item)
-                              <option value="{{ $item->id }}"> {{$item->getTipe->name}} | {!! Str::limit($item->detail, 60) !!}</option>
+                              <option value="{{ $item->id }}"> {{$item->getTipe->name ?? ''}} | {!! Str::limit($item->detail, 60) !!}</option>
                               @endforeach
                           </select>
                         </div>
