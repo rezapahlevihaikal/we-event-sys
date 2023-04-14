@@ -131,7 +131,22 @@ class EventController extends Controller
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
         $dataWorkflow = EventWorkflow::where('event_id', '=', $data->id)->where('status_id', '=', '1')->orderBy('id')->get();
         $dataEb = EventBudget::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
-        $dataS = Sponsor::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        // $dataS = Sponsor::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataS = DB::table('events')
+                ->select('companies.company_name', 'deals.amount_po', 'deals.id_stage')
+                ->join('deals','events.product_id','=','deals.id')
+                ->join('companies','deals.id_company','=','companies.id')
+                ->where('events.id', '=', $data->id)
+                ->whereIn('deals.id_stage',[3, 4, 5])
+                ->get();
+
+        $sumSpon = DB::table('events')                
+                ->join('deals','events.product_id','=','deals.id')
+                ->join('companies','deals.id_company','=','companies.id')
+                ->where('events.id', '=', $data->id)
+                ->whereIn('deals.id_stage',[3, 4, 5])
+                ->sum('deals.amount_po');
+
         $dataK = Keynote::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         // $dataD = DB::table('daily_tasks')
@@ -143,7 +158,7 @@ class EventController extends Controller
         // $dataD2 = DB::select("SELECT sum(bobot) from daily_tasks a inner join detail_workflows b on a.detail_id=b.id where a.event_id=$id and a.status='done' and a.workflow_id=$dataWorkflow->workflow_id")->get();
         $doc = Dokumentasi::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         
-        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'dataWorkflow', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc'));
+        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'dataWorkflow', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc', 'sumSpon'));
     }
 
     /**

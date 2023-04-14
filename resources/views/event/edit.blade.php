@@ -212,35 +212,55 @@
                   {{-- SPONSOR --}}
                   <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
                       <div class="header">
-                        <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/sponsor/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
-                          Tambah Data
-                        </button>
-                      </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="card text-center">
+                              <div class="card-header">
+                                Budget
+                              </div>
+                              <div class="card-body">
+                                  <h2>
+                                    @currency($data->budget)
+                                  </h2>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="card text-center">
+                              <div class="card-header">
+                                Total Revenue
+                              </div>
+                              <div class="card-body">
+                                  <h2>
+                                    @currency($sumSpon)
+                                  </h2>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  
                         <br>
                       <!-- /.card-header -->
                         <table id="sponsor" class="table table-bordered table-hover">
                           <thead>
                           <tr style="text-align: center">
                             <th>Nama Perusahaan / Partner</th>
-                            <th>Benefit</th>
                             <th>Nominal</th>
-                            <th>Action</th>
                           </tr>
                           </thead>
                           <tbody>
                             @foreach($dataS as $item)
                               <tr style="text-align:center;">
-                                <td title="{{$item->getCompany->company_name	}}">{!! Str::limit($item->getCompany->company_name, 40) !!}</td>
-                                <td title="{{$item->benefit_sponsor	}}">{!! Str::limit($item->benefit_sponsor, 40) !!}</td>
-                                <td>@currency($item->nominal)</td>
-                                <td title="">
+                                <td title="{{$item->company_name	}}">{!! Str::limit($item->company_name, 40) !!}</td>
+                                <td>@currency($item->amount_po)</td>
+                                {{-- <td title="">
                                     <form action="{{route('sponsor.destroy', $item->id)}}" method="POST">
                                         <a href=" {{route('sponsor.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                         @csrf
                                         @method('post')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
                                     </form>
-                                </td>
+                                </td> --}}
                               </tr>
                             @endforeach
                           </tbody>
