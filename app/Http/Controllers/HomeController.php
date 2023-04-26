@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $revenue = DB::table('events')                
+                   ->join('deals','events.product_id','=','deals.id')
+                   ->whereIn('deals.id_stage',[3, 4, 5])
+                   ->sum('deals.amount_po');
+
+        $budget = DB::table('events')
+                  ->where('status_id', '=', 1)
+                  ->sum('budget');
+
+        $profit = $revenue - $budget;
+
+        $event = Event::where('status_id', '=', '1')->latest('id')->get();
+
+        return view('home', compact('revenue', 'budget', 'profit', 'event'));
     }
 }

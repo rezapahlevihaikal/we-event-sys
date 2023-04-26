@@ -216,7 +216,7 @@
                           <div class="col">
                             <div class="card text-center">
                               <div class="card-header">
-                                Budget
+                                Budget (Estimasi)
                               </div>
                               <div class="card-body">
                                   <h2>
