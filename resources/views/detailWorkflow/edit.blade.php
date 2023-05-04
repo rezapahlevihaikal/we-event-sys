@@ -34,6 +34,7 @@
                         <div class="col">
                             <label for="formGroupExampleInput2">Workflow</label>
                             <select data-live-search="true" id="workflow_id" class="form-control" data-role="select-dropdown" data-profile="minimal" name="workflow_id" value="" selected="">
+                                <option value="">TIPE WORKFLOW</option>
                                 @foreach ($workflow as $item)
                                 <option value="{{ $item->id }}" {{$data->workflow_id == $item->id  ? 'selected' : ''}}> {{$item->name}} </option>
                                 @endforeach
@@ -42,6 +43,7 @@
                         <div class="col">
                             <label for="formGroupExampleInput2">Tipe Event</label>
                             <select data-live-search="true" id="tipe_event_id" class="form-control" data-role="select-dropdown" data-profile="minimal" name="tipe_event_id" value="" selected="">
+                              <option value="">TIPE EVENT</option>
                                 @foreach ($tipeEvent as $item)
                                 <option value="{{ $item->id }}" {{$data->tipe_event_id == $item->id  ? 'selected' : ''}}> {{$item->name}} </option>
                                 @endforeach
