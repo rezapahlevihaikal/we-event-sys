@@ -116,8 +116,11 @@ class DetailWorkflowController extends Controller
      * @param  \App\Models\DetailWorkflow  $detailWorkflow
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DetailWorkflow $detailWorkflow)
+    public function destroy($id)
     {
-        //
+        $data = DetailWorkflow::find($id);
+        $data->delete();
+
+        return redirect()->back()->with('success','data berhasil dihapus');
     }
 }
