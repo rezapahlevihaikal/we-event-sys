@@ -73,60 +73,17 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  {{-- <div class="col-md-8">
-                    <p class="text-center">
-                      <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                    </p>
-
-                    <div class="chart">
-                      <!-- Sales Chart Canvas -->
-                      <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-                    </div>
-                    <!-- /.chart-responsive -->
-                  </div> --}}
-                  <!-- /.col -->
-                  <div class="col-md-6">
-                    {{-- <p class="text-center">
-                      <strong>Event</strong>
-                    </p>
-
-                    @foreach($event as $item)
-                    <div class="progress-group" style="padding-top: 10px">
-                      {{$item->getProduct->name}}
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width:" value="{{$item->percentage}}" ></div>
+                  @foreach ($event as $item)
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">{!! Str::limit($item->getProduct->name, 60) !!}</h5>
+                        <p class="card-text">@currency($item->budget)</p>
+                        
                       </div>
                     </div>
-                    @endforeach --}}
-                    <!-- /.progress-group -->
-
-                    {{-- <div class="progress-group">
-                      Complete Purchase
-                      <span class="float-right"><b>310</b>/400</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 75%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      <span class="progress-text">Visit Premium Page</span>
-                      <span class="float-right"><b>480</b>/800</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 60%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      Send Inquiries
-                      <span class="float-right"><b>250</b>/500</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 50%"></div>
-                      </div>
-                    </div> --}}
-                    <!-- /.progress-group -->
-                  </div>
+                  </div>  
+                  @endforeach
                   <!-- /.col -->
                 </div>
                 <!-- /.row -->

@@ -51,11 +51,11 @@ class DailyTaskController extends Controller
         
         $filename = null;
         $request->validate([
-            'file' => 'nullable|mimes:mimes:jpg,jpeg,png|max:5120'
+            'file' => 'nullable|mimes:mimes:jpg,jpeg,png,doc,docx,xlx,xlsx,pdf|max:5120'
         ]);
 
         $rules = [
-            'file' => 'nullable|mimes:jpg,jpeg,png|max:5120'
+            'file' => 'nullable|mimes:jpg,jpeg,png,doc,docx,xlx,xlsx,pdf|max:5120'
         ];
 
         $customMessage = [
@@ -131,7 +131,7 @@ class DailyTaskController extends Controller
     {
         //
         $request->validate([
-            'file' => 'nullable|mimes:jpg,jpeg,png|max:5120'
+            'file' => 'nullable|mimes:jpg,jpeg,png,doc,docx,xlx,xlsx,pdf|max:5120'
         ]);
 
         $data = DailyTask::find($id);

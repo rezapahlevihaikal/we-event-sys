@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $profit = $revenue - $budget;
 
-        $event = Event::where('status_id', '=', '1')->latest('id')->get();
+        $event = Event::where('status_id', '=', '1')->latest('id')->limit(4)->get();
 
         return view('home', compact('revenue', 'budget', 'profit', 'event'));
     }
