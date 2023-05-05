@@ -113,4 +113,28 @@
           $('#detail').selectpicker();
         });
   </script>
+  {{-- <script>
+    jQuery(document).ready(function()
+    {
+        jQuery('select[name="workflow"]').on('change',function(){
+           var workflows = jQuery(this).val();
+           if(workflows)
+           {
+              jQuery.ajax({
+                url      : '/getWorkflows/' +workflows,
+                type     : "GET",
+                dataType : "json",
+                success:function(data)
+                {
+                    jQuery('select[name="detail"]').empty();
+                    jQuery.each(data, function(key,value){
+                        $('select[name="detail"]').append('<option>')
+                    });
+                }
+
+              })
+           }
+        });
+    });
+  </script> --}}
 @endpush

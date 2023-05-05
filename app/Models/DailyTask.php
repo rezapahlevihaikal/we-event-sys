@@ -32,4 +32,9 @@ class DailyTask extends Model
     {
         return $this->belongsTo('App\Models\Workflow', 'workflow_id', 'id');
     }
+
+    public function getDetailWorkflow()
+    {
+        return $this->belongsTo('App\Models\DetailWorkflow', 'detail_id', 'id');
+    }
 }

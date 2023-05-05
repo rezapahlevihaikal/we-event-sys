@@ -333,7 +333,10 @@
                                   <button type="button" class="btn-xs btn-primary" disabled>Done</button>
                                 @endif
                               </td>
-                              <td>{{$item->getWorkflow->name ?? ''}}</td>
+                              <td>
+                                  {{$item->getWorkflow->name ?? ''}} <br> 
+                                  {{$item->getDetailWorkflow->detail ?? ''}}
+                              </td>
                               <td title="{{$item->pic}}">{!! Str::limit($item->pic, 40) !!}</td>
                               <td title="{{$item->kegiatan}}">{!! Str::limit($item->kegiatan, 40) !!}</td>
                               <td title="">
