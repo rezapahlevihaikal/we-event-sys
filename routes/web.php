@@ -96,7 +96,10 @@ Route::prefix('dailyTask')->group(function(){
 	Route::post('update/{id}', [DailyTaskController::class, 'update'])->name('dailyTask.update');
 	Route::get('download/{id}', [DailyTaskController::class, 'getFileDaily'])->name('dailyTask.download');
 	Route::post('delete/{id}', [DailyTaskController::class, 'destroy'])->name('dailyTask.destroy');
+	
 });
+
+Route::get('fetchDetail', [DailyTaskController::class, 'fetchDetail']);
 
 Route::prefix('dokumentasi')->group(function(){
 	Route::get('/', [DokumentasiController::class, 'index'])->name('dokumentasi');

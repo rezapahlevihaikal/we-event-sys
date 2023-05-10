@@ -40,7 +40,7 @@
                               @endforeach
                           </select>
                         </div>
-                        <div class="col">
+                        {{-- <div class="col">
                           <label for="demo_overview_minimal">Detail</label>
                           <select data-live-search="true" id="detail" class="form-control" data-role="select-dropdown" data-profile="minimal" name="detail_id" value="" selected="">
                               <option value="">PILIH DETAIL</option>
@@ -48,6 +48,12 @@
                               <option value="{{ $item->id }}"> {{$item->getTipe->name ?? ''}} | {!! Str::limit($item->detail, 60) !!}</option>
                               @endforeach
                           </select>
+                        </div> --}} 
+                        <div class="col">
+                            <label for="demo_overview_minimal">Detail</label>
+                            <select data-live-search="true" name="detail_id" id="detail" class="form-control">
+                                <option value="">Pilih Detail</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 10px">
@@ -107,34 +113,30 @@
     <!-- /.content -->
   </div>
 @endsection
-@push('js')
-  <script>
-        $(document).ready(function () {
-          $('#detail').selectpicker();
-        });
-  </script>
-  {{-- <script>
-    jQuery(document).ready(function()
-    {
-        jQuery('select[name="workflow"]').on('change',function(){
-           var workflows = jQuery(this).val();
-           if(workflows)
-           {
-              jQuery.ajax({
-                url      : '/getWorkflows/' +workflows,
-                type     : "GET",
-                dataType : "json",
-                success:function(data)
-                {
-                    jQuery('select[name="detail"]').empty();
-                    jQuery.each(data, function(key,value){
-                        $('select[name="detail"]').append('<option>')
-                    });
-                }
-
-              })
-           }
-        });
-    });
-  </script> --}}
+@push('js') 
+        <script>
+          $('#workflow').change(function(){
+              var workflowID = $(this).val();    
+              if(workflowID){
+                  $.ajax({
+                    type:"GET",
+                    url:"/fetchDetail?workflowID="+workflowID,
+                    dataType: 'JSON',
+                    success:function(res){               
+                      if(res){
+                          $("#detail").empty();
+                          // $("#detail").append('<option>Pilih Detail</option>');
+                          $.each(res,function(key,detail){
+                              $("#detail").append('<option value="'+key+'">'+detail+'</option>');
+                          });
+                      }else{
+                        $("#detail").empty();
+                      }
+                    }
+                  });
+              }else{
+                  $("#workflow").empty();
+              }      
+            });
+        </script>
 @endpush
