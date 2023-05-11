@@ -73,17 +73,32 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  @foreach ($event as $item)
-                  <div class="col-sm-6">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">{!! Str::limit($item->getProduct->name, 60) !!}</h5>
-                        <p class="card-text">@currency($item->budget)</p>
-                        
-                      </div>
-                    </div>
+                  
+                  <div class="col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover">
+                      <thead style="text-align: center">
+                      <tr>
+                        <th>Tipe</th>
+                        <th>Tema</th>
+                        <th>Schedule</th>
+                        <th>Budget</th>
+                        <th>Percentage</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($event as $item)
+                          <tr>
+                            <td style="text-align:center;" title=""> <a href="">{!! Str::limit($item->tipe_award, 30) !!}</a></td>
+                            <td style="text-align:left;">{{$item->tema}}</td>
+                            <td>{{$item->schedule}}</td>
+                            <td>@currency($item->budget)</td>
+                            <td>{{$item->persen ?? '0'}}%</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
                   </div>  
-                  @endforeach
+                 
                   <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -771,3 +786,13 @@
     <!-- /.content -->
   </div>
 @endsection
+@push('js')
+  <script type="text/javascript">
+    $(document).ready (function (){
+      $("#example2").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+    });
+  </script>
+@endpush
