@@ -44,10 +44,10 @@ class DailyTaskController extends Controller
         if ($request->workflowID != 4 && $request->workflowID != 5 && $request->workflowID != 6 && $request->workflowID != 8) {
             $details = DetailWorkflow::where([
                 'workflow_id' => $request->workflowID,
-                'tipe_event_id' => $dataEvent->tipe_id])->pluck('detail');
+                'tipe_event_id' => $dataEvent->tipe_id])->pluck('detail', 'id');
         }
         else {
-            $details = DetailWorkflow::where('workflow_id',$request->workflowID)->pluck('detail');
+            $details = DetailWorkflow::where('workflow_id',$request->workflowID)->pluck('detail', 'id');
         }
         return response()->json($details);
     }
@@ -60,7 +60,7 @@ class DailyTaskController extends Controller
      */
     public function store(Request $request, $id)
     {
-        
+        // dd($request->all());
         $dataEvent = Event::find($id);
         //
         

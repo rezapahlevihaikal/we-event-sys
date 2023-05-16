@@ -128,8 +128,8 @@
                       if(res){
                           $("#detail").empty();
                           // $("#detail").append('<option>Pilih Detail</option>');
-                          $.each(res,function(key,detail){
-                              $("#detail").append('<option value="'+key+'">'+detail+'</option>');
+                          $.each(res,function(id,detail){
+                              $("#detail").append('<option value="'+id+'">'+detail+'</option>');
                           });
                       }else{
                         $("#detail").empty();
