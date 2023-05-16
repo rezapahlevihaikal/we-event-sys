@@ -41,7 +41,7 @@ class DailyTaskController extends Controller
     public function fetchDetail(Request $request)
     {
         $dataEvent = Event::findOrFail($request->eventID);
-        if ($request->workflowID != 4 && $request->workflowID != 5) {
+        if ($request->workflowID != 4 && $request->workflowID != 5 && $request->workflowID != 6 && $request->workflowID != 8) {
             $details = DetailWorkflow::where([
                 'workflow_id' => $request->workflowID,
                 'tipe_event_id' => $dataEvent->tipe_id])->pluck('detail');
