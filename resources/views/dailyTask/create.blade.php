@@ -94,6 +94,7 @@
                               </div>
                         </div>
                     </div>
+                    <input type="hidden" id="data-event" name="" class="form-control" value="{{$dataEvent->id}}">
                     <br>
                     <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
                     <button class="btn btn-primary" type="submit">Create Data</button>
@@ -116,11 +117,12 @@
 @push('js') 
         <script>
           $('#workflow').change(function(){
-              var workflowID = $(this).val();    
+              var workflowID = $(this).val();
+              var eventID = $('#data-event').val();
               if(workflowID){
                   $.ajax({
                     type:"GET",
-                    url:"/fetchDetail?workflowID="+workflowID,
+                    url:"/fetchDetail?workflowID="+workflowID+"&eventID="+eventID,
                     dataType: 'JSON',
                     success:function(res){               
                       if(res){
