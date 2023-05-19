@@ -33,19 +33,21 @@
                     <div class="row" style="padding-top: 10px">
                         <div class="col">
                           <label for="demo_overview_minimal">Workflow</label>
-                          <select data-live-search="true" id="" class="form-control" data-role="select-dropdown" data-profile="minimal" name="workflow_id" value="" selected="">
+                          {{-- <select data-live-search="true" id="" class="form-control" data-role="select-dropdown" data-profile="minimal" name="workflow_id" value="" selected="" disabled>
                               @foreach ($workflow as $item)
                               <option value="{{ $item->id }}" {{$data->workflow_id == $item->id  ? 'selected' : ''}}>{!! Str::limit($item->name, 60) !!}</option>
                               @endforeach
-                          </select>
+                          </select> --}}
+                          <input type="text" name="" id="" value="{{$data->getWorkflow->name}}" class="form-control" disabled>
                         </div>
                         <div class="col">
                           <label for="demo_overview_minimal">Detail</label>
-                          <select data-live-search="true" id="" class="form-control" data-role="select-dropdown" data-profile="minimal" name="detail_id" value="" selected="">
+                          {{-- <select data-live-search="true" id="" class="form-control" data-role="select-dropdown" data-profile="minimal" name="detail_id" value="" selected="">
                               @foreach ($detail as $item)
                               <option value="{{ $item->id }}" {{$data->detail_id == $item->id  ? 'selected' : ''}}>{{$item->getTipe->name ?? ''}} | {!! Str::limit($item->detail, 60) !!}</option>
                               @endforeach
-                          </select>
+                          </select> --}}
+                          <input type="text" name="" id="" value="{{$data->getDetailWorkflow->detail}}" class="form-control" disabled>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 10px">
