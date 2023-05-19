@@ -145,6 +145,7 @@ class DailyTaskController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
         $request->validate([
             'file' => 'nullable|mimes:jpg,jpeg,png,doc,docx,xlx,xlsx,pdf|max:5120'
         ]);
