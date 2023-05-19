@@ -166,8 +166,8 @@ class DailyTaskController extends Controller
 
         $data = DailyTask::find($id);
         $data->update([
-            'workflow_id' => $request->workflow_id,
-            'detail_id' => $request->detail_id,
+            // 'workflow_id' => $request->workflow_id,
+            // 'detail_id' => $request->detail_id,
             'tanggal' => $request->tanggal,
             'pic' => $request->pic,
             'kegiatan' => $request->kegiatan,
