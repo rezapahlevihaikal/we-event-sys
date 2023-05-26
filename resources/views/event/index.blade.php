@@ -44,7 +44,7 @@
                   <tbody>
                     @foreach($data as $item)
                       <tr style="text-align:center;">
-                        <td title="{{$item->getProduct->name}}"> <a href="{{route('event.edit', $item->id)}}">{!! Str::limit($item->getProduct->name, 60) !!}</a></td>
+                        <td title="{{$item->getProduct->name ?? 'data kosong'}}"> <a href="{{route('event.edit', $item->id)}}">{!! Str::limit($item->getProduct->name ?? 'kosong', 60) !!}</a></td>
                         <td>{{$item->getTipe->name}}</td>
                         <td>{{$item->tema}}</td>
                         <td title="">

@@ -164,7 +164,6 @@ class DailyTaskController extends Controller
             $filename = $data->file;
         }
 
-        $data = DailyTask::find($id);
         $data->update([
             // 'workflow_id' => $request->workflow_id,
             // 'detail_id' => $request->detail_id,
