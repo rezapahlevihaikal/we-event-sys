@@ -17,6 +17,7 @@ class DailyTask extends Model
         'detail_id',
         'event_id',
         'tanggal',
+        'url',
         'pic',
         'kegiatan',
         'status',

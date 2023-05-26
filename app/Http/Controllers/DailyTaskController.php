@@ -60,7 +60,7 @@ class DailyTaskController extends Controller
      */
     public function store(Request $request, $id)
     {
-        // dd($request->all());
+        
         $dataEvent = Event::find($id);
         //
         
@@ -79,10 +79,10 @@ class DailyTaskController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessage);
-
+        
         $headerNameDoc = 'Daily';
         $getId = $dataEvent->id;
-
+        // dd($request->$filename);
         if ($request->file) {
             
             $filename = $headerNameDoc."_".$getId.uniqid().".".$request->file->extension();        
@@ -96,12 +96,13 @@ class DailyTaskController extends Controller
             'status_id' => 1,
             'event_id' => $dataEvent->id,
             'tanggal' => $request->tanggal,
+            'url' => $request->url,
             'pic' => $request->pic,
             'kegiatan' => $request->kegiatan,
             'status' => $request->status,
             'file' => $filename
         ]);
-
+        
         if ($data) {
             return redirect()->route('event.edit', $dataEvent->id)->withStatus('data berhasil diinput');
         } else {
@@ -168,6 +169,7 @@ class DailyTaskController extends Controller
             // 'workflow_id' => $request->workflow_id,
             // 'detail_id' => $request->detail_id,
             'tanggal' => $request->tanggal,
+            'url' => $request->url,
             'pic' => $request->pic,
             'kegiatan' => $request->kegiatan,
             'status' => $request->status,

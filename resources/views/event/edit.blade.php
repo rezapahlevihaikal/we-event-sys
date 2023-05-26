@@ -153,8 +153,8 @@
                         <tbody>
                           @foreach($dataWorkflow as $item)
                             <tr style="text-align:center;">
-                              <td title="{{$item->getWorkflow->name	}}">
-                                {!! Str::limit($item->getWorkflow->name, 40) !!} <br>
+                              <td title="{{$item->getWorkflow->name ?? '#'}}">
+                                {!! Str::limit($item->getWorkflow->name ?? '#', 40) !!} <br>
                                 {{$item->percentage}}%
                               </td>
                               <td title="{{$item->desc	}}"> {!! Str::limit($item->desc, 40) !!} </td>
@@ -338,7 +338,10 @@
                                   {{$item->getDetailWorkflow->detail ?? ''}}
                               </td>
                               <td title="{{$item->pic}}">{!! Str::limit($item->pic, 40) !!}</td>
-                              <td title="{{$item->kegiatan}}">{!! Str::limit($item->kegiatan, 40) !!}</td>
+                              <td title="{{$item->kegiatan}}">
+                                  {!! Str::limit($item->kegiatan, 40) !!} <br>
+                                  <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer">{!! Str::limit($item->url, 40) !!}</a>
+                              </td>
                               <td title="">
                                   <form action="{{route('dailyTask.destroy', $item->id)}}" method="POST">
                                       <a href=" {{route('dailyTask.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>

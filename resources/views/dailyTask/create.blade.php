@@ -79,6 +79,9 @@
                               <option value="done">Done</option>
                             </select>
                             <br>
+
+                            <label for="formGroupExampleInput2">URL</label>
+                            <input type="text" name="url" class="form-control" id=""> <br>  
                             
                               <strong>Image (Max 2 MB):</strong>
                               <div class="input-group">
