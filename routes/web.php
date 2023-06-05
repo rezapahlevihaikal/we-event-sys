@@ -11,6 +11,7 @@ use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\WorkflowController;
 use App\Http\Controllers\EventWorkflowController;
 use App\Http\Controllers\DetailWorkflowController;
+use App\Http\Controllers\AudienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +127,15 @@ Route::prefix('detailWorkflow')->group(function(){
 	Route::get('edit/{id}', [DetailWorkflowController::class, 'edit'])->name('detailWorkflow.edit');
 	Route::post('update/{id}', [DetailWorkflowController::class, 'update'])->name('detailWorkflow.update');
 	Route::post('delete/{id}', [DetailWorkflowController::class, 'destroy'])->name('detailWorkflow.destroy');
+});
+
+Route::prefix('audience')->group(function(){
+	Route::get('/', [AudienceController::class, 'index'])->name('audience');
+	Route::get('create/{id}', [AudienceController::class, 'create'])->name('audience.create');
+	Route::post('store/{id}', [AudienceController::class, 'store'])->name('audience.store');
+	Route::get('edit/{id}', [AudienceController::class, 'edit'])->name('audience.edit');
+	Route::post('update/{id}', [AudienceController::class, 'update'])->name('audience.update');
+	Route::post('delete/{id}', [AudienceController::class, 'destroy'])->name('audience.destroy');
 });
 
 Route::post('api/fetch-states', [DailyTaskController::class, 'fetchWorkflow']);

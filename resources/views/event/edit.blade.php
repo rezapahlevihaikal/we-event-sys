@@ -31,6 +31,9 @@
                     <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Event</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-audiences-tab" data-toggle="pill" href="#custom-tabs-one-audiences" role="tab" aria-controls="custom-tabs-one-audiences" aria-selected="true">Peserta</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-workflow-tab" data-toggle="pill" href="#custom-tabs-one-workflow" role="tab" aria-controls="custom-tabs-one-workflow" aria-selected="false">Workflow</a>
                   </li>
                   <li class="nav-item">
@@ -132,7 +135,109 @@
                         <button class="btn btn-primary" type="submit">Create Data</button>
                       </form>
                   </div>
-                   {{-- WORKFLOW --}}
+                  {{-- AUDIENCES --}}
+                  <div class="tab-pane fade" id="custom-tabs-one-audiences" role="tabpanel" aria-labelledby="custom-tabs-one-audiences-tab">
+                    <div class="header">
+                      @if (count($dataAu) < 1)
+                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                        Masukkan Jumlah Peserta
+                      </button>
+                      @endif
+                    </div>
+                      <br>
+                    <!-- /.card-header -->
+                    @if ($dataAu->isNotEmpty())
+                        @foreach ($dataAu as $item)
+                        <div class="row"> 
+                          <div class="col">
+                            <div class="card text-center">
+                              <div class="card-header">
+                                Jenis Peserta
+                              </div>
+                              <div class="card-body">
+                                  <h2>
+                                    @if($item->jenis_peserta == 1)
+                                      Online
+                                    @elseif($item->jenis_peserta == 2)
+                                      Offline
+                                    @else
+                                      Hybrid
+                                    @endif
+                                  </h2>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="card text-center">
+                            <div class="card-header">
+                              Target Peserta
+                            </div>
+                            <div class="card-body">
+                                <h2>
+                                  {{number_format($item->target_peserta)}}
+                                </h2>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-center">
+                            <div class="card-header">
+                              Aktual Peserta
+                            </div>
+                            <div class="card-body">
+                                <h2>
+                                  {{number_format($item->aktual_peserta)}}
+                                </h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                          @if ($item->jenis_peserta == 3)
+                          <div class="row">
+                            <div class="col">
+                              <div class="card text-center">
+                                <div class="card-header">
+                                  Target Hybrid
+                                </div>
+                                <div class="card-body">
+                                    <h2>
+                                      {{number_format($item->target_hybrid)}}
+                                    </h2>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="card text-center">
+                                <div class="card-header">
+                                  Aktual Hybrid
+                                </div>
+                                <div class="card-body">
+                                    <h2>
+                                      {{number_format($item->aktual_hybrid)}}
+                                    </h2>
+                                </div>
+                              </div>
+                            </div>
+                          </div> 
+                          @endif
+                          <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/edit', $item->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                            Edit Data Jumlah Peserta
+                          </button>
+                      @endforeach
+                    @else
+                    <div class="card">
+                      <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                          <p>Data peserta masih kosong</p>
+                          <footer class="blockquote-footer">Silahkan masukkan data pada tombol <b>Masukkan Jumlah Peserta</b> </footer>
+                        </blockquote>
+                      </div>
+                    </div>
+                    @endif
+                  </div>
+                  {{-- WORKFLOW --}}
                    <div class="tab-pane fade" id="custom-tabs-one-workflow" role="tabpanel" aria-labelledby="custom-tabs-one-workflow-tab">
                     <div class="header">
                       <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/eventWorkflow/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
