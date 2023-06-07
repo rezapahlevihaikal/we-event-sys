@@ -81,6 +81,8 @@
                                   @enderror
                                 </div>
                               </div>
+                              <br>
+                              <img class="card-img-top" src="/uploads/audience/{{$data->file}}" alt="Card image cap" style="border-radius: 8px; width: 350px; height: 200px">
                         </div>
                     </div>
                    

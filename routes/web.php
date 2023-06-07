@@ -135,6 +135,7 @@ Route::prefix('audience')->group(function(){
 	Route::post('store/{id}', [AudienceController::class, 'store'])->name('audience.store');
 	Route::get('edit/{id}', [AudienceController::class, 'edit'])->name('audience.edit');
 	Route::post('update/{id}', [AudienceController::class, 'update'])->name('audience.update');
+	Route::get('download/{id}', [AudienceController::class, 'getFileAudience'])->name('audience.download');
 	Route::post('delete/{id}', [AudienceController::class, 'destroy'])->name('audience.destroy');
 });
 

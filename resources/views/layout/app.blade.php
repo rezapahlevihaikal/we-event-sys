@@ -193,7 +193,19 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->id_core_bisnis == 19)
           <li class="nav-item">
+            {{-- <a href="pages/calendar.html" class="nav-link"> --}}
+              <a href=" {{route('event')}} " class="nav-link {{ request()->is('event') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-calendar-check"></i> 
+              <p>
+                Event
+                {{-- <span class="badge badge-info right">2</span> --}}
+              </p>
+            </a>
+          </li>
+          @endif
+          {{-- <li class="nav-item">
             <a href="pages/gallery.html" class="nav-link">
               <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
@@ -232,7 +244,8 @@
                 Dokumentasi
               </p>
             </a>
-          </li>
+          </li> --}}
+          @if (Auth::user()->id_core_bisnis == 19)
           <li class="nav-header">CONFIG</li>
           <li class="nav-item">
             {{-- <a href="pages/kanban.html" class="nav-link"> --}}
@@ -261,6 +274,7 @@
               </p>
             </a>
           </li>    
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

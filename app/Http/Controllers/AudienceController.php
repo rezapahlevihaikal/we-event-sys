@@ -156,6 +156,14 @@ class AudienceController extends Controller
         }
     }
 
+    public function getFileAudience($id)
+    {
+        $data = audience::where('id', $id)->first();
+        $filePath = public_path('uploads/audience/'. $data->file);
+        // dd($filePath);
+        return response()->download($filePath);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

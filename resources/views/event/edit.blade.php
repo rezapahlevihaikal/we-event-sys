@@ -132,16 +132,20 @@
                         </div>
                         <br>
                         <button class="btn btn-success" onclick="window.location='{{url('/event')}}'" type="reset">Back</button>
-                        <button class="btn btn-primary" type="submit">Create Data</button>
+                        @if (Auth::user()->id_core_bisnis == 19)
+                            <button class="btn btn-primary" type="submit">Create Data</button>
+                        @endif
                       </form>
                   </div>
                   {{-- AUDIENCES --}}
                   <div class="tab-pane fade" id="custom-tabs-one-audiences" role="tabpanel" aria-labelledby="custom-tabs-one-audiences-tab">
                     <div class="header">
-                      @if (count($dataAu) < 1)
-                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
-                        Masukkan Jumlah Peserta
-                      </button>
+                      @if (Auth::user()->id_core_bisnis == 19)
+                        @if (count($dataAu) < 1)
+                        <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                          Masukkan Jumlah Peserta
+                        </button>
+                        @endif
                       @endif
                     </div>
                       <br>
@@ -172,7 +176,11 @@
                         <div class="col">
                           <div class="card text-center">
                             <div class="card-header">
-                              Target Peserta
+                              @if ($item->jenis_peserta == 3)
+                                  Target Peserta Offline
+                              @else
+                                  Target Peserta
+                              @endif
                             </div>
                             <div class="card-body">
                                 <h2>
@@ -184,7 +192,12 @@
                         <div class="col">
                           <div class="card text-center">
                             <div class="card-header">
-                              Aktual Peserta
+                              @if ($item->jenis_peserta == 3)
+                                  Aktual Peserta Offline
+                              @else
+                                  Aktual Peserta
+                              @endif
+                              
                             </div>
                             <div class="card-body">
                                 <h2>
@@ -199,7 +212,7 @@
                             <div class="col">
                               <div class="card text-center">
                                 <div class="card-header">
-                                  Target Hybrid
+                                  Target Online
                                 </div>
                                 <div class="card-body">
                                     <h2>
@@ -211,7 +224,7 @@
                             <div class="col">
                               <div class="card text-center">
                                 <div class="card-header">
-                                  Aktual Hybrid
+                                  Aktual Online
                                 </div>
                                 <div class="card-body">
                                     <h2>
@@ -222,9 +235,11 @@
                             </div>
                           </div> 
                           @endif
-                          <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/edit', $item->id)}}'" data-toggle="modal" data-target="#exampleModal">
-                            Edit Data Jumlah Peserta
-                          </button>
+                          @if (Auth::user()->id_core_bisnis == 19)
+                            <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/edit', $item->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                              Edit Data Jumlah Peserta
+                            </button>
+                          @endif
                       @endforeach
                     @else
                     <div class="card">
@@ -240,9 +255,11 @@
                   {{-- WORKFLOW --}}
                    <div class="tab-pane fade" id="custom-tabs-one-workflow" role="tabpanel" aria-labelledby="custom-tabs-one-workflow-tab">
                     <div class="header">
-                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/eventWorkflow/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
-                        Tambah Data
-                      </button>
+                      @if (Auth::user()->id_core_bisnis == 19)
+                        <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/eventWorkflow/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                          Tambah Data
+                        </button>
+                      @endif
                     </div>
                       <br>
                     <!-- /.card-header -->
@@ -252,7 +269,9 @@
                           <th>Workflow</th>
                           <th>Detail</th>
                           <th>Date</th>
+                          @if (Auth::user()->id_core_bisnis == 19)
                           <th>Action</th>
+                          @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -266,14 +285,16 @@
                               <td>
                                   {{$item->start_date}} - {{$item->end_date}}
                               </td>
-                              <td title="">
+                              @if (Auth::user()->id_core_bisnis == 19)
+                                <td title="">
                                   <form action="{{route('eventWorkflow.destroy', $item->id)}}" method="POST">
                                       <a href=" {{route('eventWorkflow.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                       @csrf
                                       @method('post')
                                       <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin?');"><i class="fas fa-trash"></i></button></td>
                                   </form>
-                              </td>
+                                </td>
+                              @endif
                             </tr>
                           @endforeach
                         </tbody>
@@ -282,9 +303,11 @@
                   {{-- EVENT BUDGET --}}
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                                 <div class="header">
+                                  @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
                                   <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/eventBudget/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
                                     Tambah Data
                                   </button>
+                                  @endif
                                 </div>
                                   <br>
                                 <!-- /.card-header -->
@@ -293,7 +316,9 @@
                                     <tr>
                                       <th>Jenis Pengeluaran</th>
                                       <th>Nominal</th>
+                                      @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
                                       <th>Action</th>
+                                      @endif
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -301,14 +326,16 @@
                                         <tr style="text-align:center;">
                                           <td title="{{$item->jenis_pengeluaran	}}">{!! Str::limit($item->jenis_pengeluaran, 40) !!}</td>
                                           <td>@currency($item->nominal)</td>
+                                          @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
                                           <td title="">
-                                              <form action="{{route('eventBudget.destroy', $item->id)}}" method="POST">
-                                                  <a href=" {{route('eventBudget.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
-                                                  @csrf
-                                                  @method('post')
-                                                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
-                                              </form>
+                                            <form action="{{route('eventBudget.destroy', $item->id)}}" method="POST">
+                                                <a href=" {{route('eventBudget.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
+                                                @csrf
+                                                @method('post')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
+                                            </form>
                                           </td>
+                                          @endif
                                         </tr>
                                       @endforeach
                                     </tbody>
@@ -374,9 +401,11 @@
                   {{-- KEYNOTE SPEAKER --}}
                   <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
                     <div class="header">
-                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/keynote/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
-                        Tambah Data
-                      </button>
+                      @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 21)
+                        <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/keynote/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                          Tambah Data
+                        </button>              
+                      @endif
                     </div>
                       <br>
                     <!-- /.card-header -->
@@ -385,7 +414,9 @@
                         <tr style="text-align: center">
                           <th>Narasumber</th>
                           <th>Tema</th>
+                          @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 21)
                           <th>Action</th>
+                          @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -393,14 +424,16 @@
                             <tr style="text-align:center;">
                               <td title="{{$item->narasumber}}">{!! Str::limit($item->narasumber, 40) !!}</td>
                               <td title="{{$item->tema}}">{!! Str::limit($item->tema, 40) !!}</td>
+                              @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 21)
                               <td title="">
-                                  <form action="{{route('keynote.destroy', $item->id)}}" method="POST">
-                                      <a href=" {{route('keynote.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
-                                      @csrf
-                                      @method('post')
-                                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
-                                  </form>
+                                <form action="{{route('keynote.destroy', $item->id)}}" method="POST">
+                                    <a href=" {{route('keynote.edit', $item->id)}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
+                                    @csrf
+                                    @method('post')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
+                                </form>
                               </td>
+                              @endif
                             </tr>
                           @endforeach
                         </tbody>
@@ -462,49 +495,51 @@
                   </div>
                   {{-- DOKUMENTASI --}}
                   <div class="tab-pane fade" id="custom-tabs-one-doc" role="tabpanel" aria-labelledby="custom-tabs-one-doc-tab">
+                      @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 23 || Auth::user()->id_core_bisnis == 24)
                       <form action="{{route('event.upload', $data->id)}}" class="form-image-upload" method="POST" enctype="multipart/form-data">
-                          {!! csrf_field() !!}
-                          @if (count($errors) > 0)
-                              <div class="alert alert-danger">
-                                  <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                                  <ul>
-                                      @foreach ($errors->all() as $error)
-                                          <li>{{ $error }}</li>
-                                      @endforeach
-                                  </ul>
-                              </div>
-                          @endif
-                          @if ($message = Session::get('success'))
-                          <div class="alert alert-success alert-block">
-                              <button type="button" class="close" data-dismiss="alert">×</button>
-                                  <strong>{{ $message }}</strong>
-                          </div>
-                          @endif
-                          <div class="row">
-                              <div class="col-md-5">
-                                  <strong>Title:</strong>
-                                  <input type="text" name="title" class="form-control" placeholder="Title">
-                              </div>
-                              <div class="col-md-5">
-                                  <strong>Image (Max 2 MB):</strong>
-                                  <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="exampleInputFile" name="file">
-                                      <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                      @error('file')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{$message}}</strong>
-                                        </span>
-                                      @enderror
-                                    </div>
+                        {!! csrf_field() !!}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                        </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-md-5">
+                                <strong>Title:</strong>
+                                <input type="text" name="title" class="form-control" placeholder="Title">
+                            </div>
+                            <div class="col-md-5">
+                                <strong>Image (Max 2 MB):</strong>
+                                <div class="input-group">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="exampleInputFile" name="file">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    @error('file')
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{$message}}</strong>
+                                      </span>
+                                    @enderror
                                   </div>
-                              </div>
-                              <div class="col-md-2">
-                                  <br/>
-                                  <button type="submit" class="btn btn-success">Upload</button>
-                              </div>
-                          </div>
-                      </form> 
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <br/>
+                                <button type="submit" class="btn btn-success">Upload</button>
+                            </div>
+                        </div>
+                      </form>
+                      @endif
                       <br>
                       @if($doc->count())
                       <div class="p-2" style="width: 80%;">
@@ -517,13 +552,21 @@
                                         <small class='text-muted'>{{ $photo->title }}</small>
                                       </div> <!-- text-center / end -->
                                     </a>
+                                    @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 23 || Auth::user()->id_core_bisnis == 24)
                                     <form action="{{route('dokumentasi.destroy', $photo->id)}}" method="POST">
                                       <input type="hidden" name="_method" value="delete">
                                       {!! csrf_field() !!}
                                       <button type="submit" class="close-icon btn btn-danger"><i class="fas fa-minus-circle"></i></button>
-                                      </form>
+                                    </form>
+                                    @endif
                                 </div>
                             @endforeach
+                        </div>
+                      </div>
+                      @else
+                      <div class="card text-center">
+                        <div class="card-body">
+                          <h5 class="card-title">Dokumentasi Belum Tersedia</h5>
                         </div>
                       </div>
                       @endif 
