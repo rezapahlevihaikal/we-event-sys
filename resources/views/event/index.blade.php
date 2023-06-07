@@ -25,11 +25,13 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
+              @if (Auth::user()->id_core_bisnis == 19)
               <div class="card-header">
                 <button type="button" onclick="window.location='{{url('/event/create')}}'" class="btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
                   Tambah Data
                 </button>
               </div>
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
