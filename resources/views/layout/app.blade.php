@@ -196,10 +196,10 @@
           @if (Auth::user()->id_core_bisnis == 19)
           <li class="nav-item">
             {{-- <a href="pages/calendar.html" class="nav-link"> --}}
-              <a href=" {{route('event')}} " class="nav-link {{ request()->is('event') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-calendar-check"></i> 
+              <a href=" {{route('evaluation')}} " class="nav-link {{ request()->is('evaluation') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-mug-hot"></i>
               <p>
-                Event
+                Evaluasi
                 {{-- <span class="badge badge-info right">2</span> --}}
               </p>
             </a>

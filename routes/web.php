@@ -12,6 +12,7 @@ use App\Http\Controllers\WorkflowController;
 use App\Http\Controllers\EventWorkflowController;
 use App\Http\Controllers\DetailWorkflowController;
 use App\Http\Controllers\AudienceController;
+use App\Http\Controllers\EvaluationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,6 +138,15 @@ Route::prefix('audience')->group(function(){
 	Route::post('update/{id}', [AudienceController::class, 'update'])->name('audience.update');
 	Route::get('download/{id}', [AudienceController::class, 'getFileAudience'])->name('audience.download');
 	Route::post('delete/{id}', [AudienceController::class, 'destroy'])->name('audience.destroy');
+});
+
+Route::prefix('evaluation')->group(function(){
+	Route::get('/', [EvaluationController::class, 'index'])->name('evaluation');
+	Route::get('create', [EvaluationController::class, 'create'])->name('evaluation.create');
+	Route::post('store', [EvaluationController::class, 'store'])->name('evaluation.store');
+	Route::get('edit/{id}', [EvaluationController::class, 'edit'])->name('evaluation.edit');
+	Route::post('update/{id}', [EvaluationController::class, 'update'])->name('evaluation.update');
+	Route::post('delete/{id}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
 });
 
 Route::post('api/fetch-states', [DailyTaskController::class, 'fetchWorkflow']);
