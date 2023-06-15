@@ -115,7 +115,6 @@ class EvaluationController extends Controller
     {
         $data = Evaluation::find($id);
         $data->update([
-            'event_id'   => $request->event_id,
             'parameter'  => $request->parameter,
             'keterangan' => $request->keterangan,
             'evaluasi'   => $request->evaluasi,
