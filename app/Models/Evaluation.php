@@ -17,6 +17,10 @@ class Evaluation extends Model
         'event_id',
         'parameter',
         'keterangan',
+        'evaluasi',
+        'penyebab',
+        'akibat',
+        'solusi',
         'nilai',
         'username'
     ];

@@ -25,44 +25,28 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              @if (Auth::user()->id_core_bisnis == 19)
-              <div class="card-header">
-                <button type="button" onclick="window.location='{{url('/evaluation/create')}}'" class="btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Tambah Data
-                </button>
-              </div>
-              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead style="text-align: center">
                   <tr>
-                    <th>Event</th>
-                    <th>Parameter</th>
-                    <th>Keterangan</th>
-                    <th>Skor</th>
-                    <th>Action</th>
+                    <th>Judul</th>
+                    <th>Tipe</th>                    
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach($data as $item)
+                    @foreach($dataEv as $item)
                       <tr style="text-align:center;">
-                        <td title="{{$item->getEvent->tema ?? 'data kosong'}}"> 
-                            <a href="{{route('evaluation.edit', $item->id)}}">{!! Str::limit($item->getEvent->tema ?? 'kosong', 60) !!}</a>
-                            <br>
-                            {{$item->username}}
-                        </td>
-                        <td title="{{$item->parameter}}">{!! Str::limit($item->parameter ?? 'kosong', 60) !!}</td>
-                        <td title="{{$item->keterangan}}">{!! Str::limit($item->keterangan ?? 'kosong', 60) !!}</td>
-                        <td>{{$item->nilai}}</td>
-                        <td title="">
-                            <form action="{{route('evaluation.destroy', $item->id)}}" method="POST">
-                                <a href="{{route('evaluation.edit', $item->id)}}" class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
+                        <td title="{{$item->getProduct->name ?? 'data kosong'}}"> <a href="{{route('evaluation.detail', $item->id)}}">{!! Str::limit($item->getProduct->name ?? 'kosong', 60) !!}</a></td>
+                        <td>{{$item->getTipe->name}}</td>
+                        {{-- <td title="">
+                            <form action="{{route('event.destroy', $item->id)}}" method="POST">
+                                <a href="{{route('event.edit', $item->id)}}" class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
                                 @csrf
                                 @method('post')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
                             </form>
-                        </td>
+                        </td> --}}
                       </tr>
                     @endforeach
                   </tbody>

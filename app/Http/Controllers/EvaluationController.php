@@ -21,10 +21,8 @@ class EvaluationController extends Controller
     public function index()
     {
         //
-        $event = Event::orderBy('updated_at', 'DESC')->get(['id', 'product_id']);
-        $data = Evaluation::with(['getEvent'])->where('status_id', 1)->get();
-
-        return view('evaluation.index', compact('event','data'));
+        $dataEv = Event::where('status_id', '=', '1')->latest('id')->get();
+        return view('evaluation.index', compact('dataEv'));
     }
 
     /**
@@ -32,11 +30,12 @@ class EvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        $dataEvent = Event::findOrFail($id);
         $event = Event::orderBy('updated_at', 'DESC')->get(['id', 'tema']);
-        return view('evaluation.create', compact('event'));
+        return view('evaluation.create', compact('event', 'dataEvent'));
     }
 
     /**
@@ -45,14 +44,19 @@ class EvaluationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //
+        $dataEvent = Event::find($id);
         $data = Evaluation::create([
             'status_id'  => 1,
-            'event_id'   => $request->event_id,
+            'event_id'   => $dataEvent->id,
             'parameter'  => $request->parameter,
             'keterangan' => $request->keterangan,
+            'evaluasi'   => $request->evaluasi,
+            'penyebab'   => $request->penyebab,
+            'akibat'     => $request->akibat,
+            'solusi'     => $request->solusi,
             'nilai'      => $request->nilai,
             'username'   => $request->username
         ]);
@@ -64,6 +68,13 @@ class EvaluationController extends Controller
             return redirect()->back()->withErrors('data gagal diinput');
         }
         
+    }
+
+    public function detailEV($id)
+    {
+        $event = Event::findOrFail($id);
+        $design = Evaluation::where('event_id', '=', $event->id)->get();
+        return view('evaluation.detail', compact('event', 'design'));
     }
 
     /**
@@ -86,10 +97,11 @@ class EvaluationController extends Controller
     public function edit($id)
     {
         //
-        $event = Event::get(['id', 'tema']);
         $data = Evaluation::find($id);
-
-        return view('evaluation.edit', compact('event', 'data'));
+        // $dataEvent = Event::get(['id', 'product_id']);
+        $dataEvent = Event::get(['tipe_id']);
+        
+        return view('evaluation.edit', compact('data', 'dataEvent'));
     }
 
     /**
@@ -106,6 +118,10 @@ class EvaluationController extends Controller
             'event_id'   => $request->event_id,
             'parameter'  => $request->parameter,
             'keterangan' => $request->keterangan,
+            'evaluasi'   => $request->evaluasi,
+            'penyebab'   => $request->penyebab,
+            'akibat'     => $request->akibat,
+            'solusi'     => $request->solusi,
             'nilai'      => $request->nilai,
             'username'   => $request->username
         ]);

@@ -142,12 +142,15 @@ Route::prefix('audience')->group(function(){
 
 Route::prefix('evaluation')->group(function(){
 	Route::get('/', [EvaluationController::class, 'index'])->name('evaluation');
-	Route::get('create', [EvaluationController::class, 'create'])->name('evaluation.create');
-	Route::post('store', [EvaluationController::class, 'store'])->name('evaluation.store');
+	Route::get('create/{id}', [EvaluationController::class, 'create'])->name('evaluation.create');
+	Route::post('store/{id}', [EvaluationController::class, 'store'])->name('evaluation.store');
 	Route::get('edit/{id}', [EvaluationController::class, 'edit'])->name('evaluation.edit');
+	Route::get('/detailEv/{id}', [EvaluationController::class, 'detailEv'])->name('evaluation.detail');
 	Route::post('update/{id}', [EvaluationController::class, 'update'])->name('evaluation.update');
 	Route::post('delete/{id}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
 });
+
+
 
 Route::post('api/fetch-states', [DailyTaskController::class, 'fetchWorkflow']);
 Route::post('api/fetch-cities', [DailyTaskController::class, 'fetchDetail']);
