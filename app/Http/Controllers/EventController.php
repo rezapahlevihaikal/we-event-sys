@@ -13,7 +13,7 @@ use App\Models\Keynote;
 use App\Models\DailyTask;
 use App\Models\Dokumentasi;
 use App\Models\Audience;
-use App\Models\Partner;
+use App\Models\partner;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
@@ -48,7 +48,7 @@ class EventController extends Controller
     public function create()
     {
         //
-        $dataPartner = Partner::get(['id', 'nama_partner']);
+        $dataPartner = partner::get(['id', 'nama_partner']);
         $dataProduct = Product::get(['id', 'name']);
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
 
@@ -133,7 +133,7 @@ class EventController extends Controller
     {
         $data = Event::find($id);
         $dataProduct = Product::get(['id', 'name']);
-        $dataPartner = Partner::get(['id', 'nama_partner']);
+        $dataPartner = partner::get(['id', 'nama_partner']);
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
         $dataWorkflow = EventWorkflow::where('event_id', '=', $data->id)->where('status_id', '=', '1')->orderBy('id')->get();
         $dataEb = EventBudget::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();

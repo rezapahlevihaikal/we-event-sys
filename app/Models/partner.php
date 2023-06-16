@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class partner extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 
     protected $table = 'partners';
 

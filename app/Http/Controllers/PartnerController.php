@@ -20,7 +20,7 @@ class PartnerController extends Controller
     public function index()
     {
         //
-        $data = Partner::all();
+        $data = partner::all();
         return view('partner.index', compact('data'));
     }
 
@@ -43,7 +43,7 @@ class PartnerController extends Controller
     public function store(Request $request)
     {
         //x`
-        $data = Partner::create([
+        $data = partner::create([
             'nama_partner' => $request->nama_partner
         ]);
 
@@ -75,7 +75,7 @@ class PartnerController extends Controller
     public function edit($id)
     {
         //
-        $data = Partner::find($id);
+        $data = partner::find($id);
         return view('partner.edit', compact('data'));
     }
 
@@ -89,7 +89,7 @@ class PartnerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = Partner::find($id);
+        $data = partner::find($id);
         $data->update([
             'nama_partner' => $request->nama_partner
         ]);
@@ -111,7 +111,7 @@ class PartnerController extends Controller
     public function destroy($id)
     {
         //
-        $data = Partner::find($id);
+        $data = partner::find($id);
         $data->delete();
 
         return redirect()->back()->with('success', 'data berhasil dihapus');
