@@ -99,6 +99,15 @@
                                 </div>
                             </div>
                             <div class="col">
+                              <label for="formGroupExampleInput2">Prediksi Revenue</label>
+                              <div class="input-group mb-2">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">Rp</div>
+                                  </div>
+                                  <input type="text" class="form-control" id="revenue" placeholder="" name="prediksi_revenue" value="{{$data->prediksi_revenue}}">
+                              </div>
+                            </div>
+                            <div class="col">
                                 <label for="demo_overview_minimal">File (Max : 5 MB)</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -603,6 +612,7 @@
         });
         $('#product').selectpicker();
         $('#budget').mask('#.##0', {reverse: true});
+        $('#revenue').mask('#.##0', {reverse: true});
         $('#nominal').mask('#.##0', {reverse: true});
         $(".fancybox").fancybox({
             // openEffect: "none",

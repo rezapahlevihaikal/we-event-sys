@@ -97,7 +97,8 @@ class EventController extends Controller
             'schedule' => $request->schedule,
             'on_event' => $request->on_event,
             'file' => $filename,
-            'status' => $request->status
+            'status' => $request->status,
+            'prediksi_revenue' => str_replace('.', '', $request->prediksi_revenue),
         ]);
 
         if ($data) {
@@ -202,7 +203,8 @@ class EventController extends Controller
             'schedule' => $request->schedule,
             'on_event' => $request->on_event,
             'file' => $filename,
-            'status' => $request->status
+            'status' => $request->status,
+            'prediksi_revenue' => str_replace('.', '', $request->prediksi_revenue),
         ]);
 
         if ($data) {

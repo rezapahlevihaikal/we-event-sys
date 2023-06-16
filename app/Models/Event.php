@@ -21,7 +21,8 @@ class Event extends Model
         'schedule',
         'on_event',
         'file',
-        'status'
+        'status',
+        'prediksi_revenue'
     ];
 
     public function getTipe()
