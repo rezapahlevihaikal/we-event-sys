@@ -274,6 +274,15 @@
               </p>
             </a>
           </li>    
+          <li class="nav-item">
+            {{-- <a href="pages/kanban.html" class="nav-link"> --}}
+              <a href=" {{route('partner')}} " class="nav-link {{ request()->is('partner') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-info-circle"></i>
+              <p>
+                Master Partner
+              </p>
+            </a>
+          </li>    
           @endif
         </ul>
       </nav>

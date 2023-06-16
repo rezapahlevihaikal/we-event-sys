@@ -56,6 +56,15 @@
                             </select>
                         </div>
                         <div class="col">
+                          <label for="demo_overview_minimal">Partner</label>
+                          <select data-live-search="true" id="product" class="form-control" data-role="select-dropdown" data-profile="minimal" name="partner_id" value="" selected="">
+                              <option value="">PILIH PARTNER</option>
+                              @foreach ($dataPartner as $item)
+                              <option value="{{ $item->id }}">{!! Str::limit($item->nama_partner, 60) !!}</option>
+                              @endforeach
+                          </select>
+                      </div>
+                        <div class="col">
                             <label for="formGroup">Lokasi</label>
                             <input type="text" class="form-control" name="lokasi">
                         </div>

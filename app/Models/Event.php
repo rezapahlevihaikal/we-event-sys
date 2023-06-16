@@ -14,6 +14,7 @@ class Event extends Model
     protected $fillable = [
         'status_id',
         'tipe_id',
+        'partner_id',
         'tema',
         'product_id',
         'lokasi',
@@ -33,5 +34,10 @@ class Event extends Model
     public function getProduct()
     {
         return $this->belongsTo('App\Models\Product', 'product_id', 'id');
+    }
+
+    public function getPartner()
+    {
+        return $this->belongsTo('App\Models\Partner', 'partner_id', 'id');
     }
 }

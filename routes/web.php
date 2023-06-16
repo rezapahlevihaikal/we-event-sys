@@ -13,6 +13,7 @@ use App\Http\Controllers\EventWorkflowController;
 use App\Http\Controllers\DetailWorkflowController;
 use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\PartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,14 @@ Route::prefix('workflow')->group(function(){
 	Route::get('edit/{id}', [WorkflowController::class, 'edit'])->name('workflow.edit');
 	Route::post('update/{id}', [WorkflowController::class, 'update'])->name('workflow.update');
 	Route::post('delete/{id}', [WorkflowController::class, 'destroy'])->name('workflow.destroy');
+});
+
+Route::prefix('partner')->group(function(){
+	Route::get('/', [PartnerController::class, 'index'])->name('partner');
+	Route::post('store', [PartnerController::class, 'store'])->name('partner.store');
+	Route::get('edit/{id}', [PartnerController::class, 'edit'])->name('partner.edit');
+	Route::post('update/{id}', [PartnerController::class, 'update'])->name('partner.update');
+	Route::post('delete/{id}', [PartnerController::class, 'destroy'])->name('partner.destroy');
 });
 
 Route::prefix('event')->group(function(){

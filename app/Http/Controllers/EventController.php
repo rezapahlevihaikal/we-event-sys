@@ -13,6 +13,7 @@ use App\Models\Keynote;
 use App\Models\DailyTask;
 use App\Models\Dokumentasi;
 use App\Models\Audience;
+use App\Models\Partner;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
@@ -47,10 +48,11 @@ class EventController extends Controller
     public function create()
     {
         //
+        $dataPartner = Partner::get(['id', 'nama_partner']);
         $dataProduct = Product::get(['id', 'name']);
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
 
-        return view('event.create', compact('dataProduct', 'dataTipeEvent'));
+        return view('event.create', compact('dataProduct', 'dataTipeEvent', 'dataPartner'));
     }
 
     /**
@@ -90,6 +92,7 @@ class EventController extends Controller
         $data = Event::create([
             'status_id' => 1,
             'tipe_id' => $request->tipe_id,
+            'partner_id' => $request->partner_id,
             'tema'    => $request->tema,
             'product_id' => $request->product_id,
             'lokasi' => $request->lokasi,
@@ -130,6 +133,7 @@ class EventController extends Controller
     {
         $data = Event::find($id);
         $dataProduct = Product::get(['id', 'name']);
+        $dataPartner = Partner::get(['id', 'nama_partner']);
         $dataTipeEvent = TipeEvent::get(['id', 'name']);
         $dataWorkflow = EventWorkflow::where('event_id', '=', $data->id)->where('status_id', '=', '1')->orderBy('id')->get();
         $dataEb = EventBudget::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
@@ -163,7 +167,7 @@ class EventController extends Controller
         // $dataD2 = DB::select("SELECT sum(bobot) from daily_tasks a inner join detail_workflows b on a.detail_id=b.id where a.event_id=$id and a.status='done' and a.workflow_id=$dataWorkflow->workflow_id")->get();
         $doc = Dokumentasi::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         
-        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'dataWorkflow', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc', 'sumSpon', 'dataAu'));
+        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'dataWorkflow', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc', 'sumSpon', 'dataAu', 'dataPartner'));
     }
 
     /**
@@ -196,6 +200,7 @@ class EventController extends Controller
 
         $data->update([
             'tipe_id' => $request->tipe_id,
+            'partner_id' => $request->partner_id,
             'tema'    => $request->tema,
             'product_id' => $request->product_id,
             'lokasi' => $request->lokasi,
