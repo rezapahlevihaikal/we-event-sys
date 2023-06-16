@@ -14,5 +14,5 @@ class partner extends Model
     protected $fillable = 
     [
         'nama_partner'
-    ];
+    ]; 
 }
