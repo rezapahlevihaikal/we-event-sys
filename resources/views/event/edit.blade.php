@@ -250,7 +250,24 @@
                                 </div>
                               </div>
                             </div>
-                          </div> 
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="card text-center">
+                                <div class="card-header">
+                                  File
+                                </div>
+                                <div class="card-body">
+                                  <a class="thumbnail fancybox" rel="ligthbox" href="/uploads/audience/{{$item->file}}">
+                                    <img src="/uploads/audience/{{$item->file}}" alt="">
+                                   
+                                  </a>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                             
+                          </div>
                           @endif
                           @if (Auth::user()->id_core_bisnis == 19)
                             <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/edit', $item->id)}}'" data-toggle="modal" data-target="#exampleModal">
