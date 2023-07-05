@@ -36,7 +36,7 @@ class EventController extends Controller
     public function index()
     {
         //
-        $data =Event::where('status_id', '=', '1')->latest('id')->get();
+        $data =Event::where('status_id', '=', '1')->latest('on_event')->get();
         return view('event.index', compact('data'));
     }
 
