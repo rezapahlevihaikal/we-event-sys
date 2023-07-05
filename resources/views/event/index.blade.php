@@ -37,8 +37,8 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead style="text-align: center">
                   <tr>
-                    <th>Judul</th>
-                    <th>Tipe</th>
+                    <th>Judul / Tipe</th>
+                    <th>On Event</th>
                     <th>Tema</th>
                     <th>Action</th>
                   </tr>
@@ -46,9 +46,12 @@
                   <tbody>
                     @foreach($data as $item)
                       <tr style="text-align:center;">
-                        <td title="{{$item->getProduct->name ?? 'data kosong'}}"> <a href="{{route('event.edit', $item->id)}}">{!! Str::limit($item->getProduct->name ?? 'kosong', 60) !!}</a></td>
-                        <td>{{$item->getTipe->name}}</td>
-                        <td>{{$item->tema}}</td>
+                        <td title="{{$item->getProduct->name ?? 'data kosong'}}"> 
+                          <a href="{{route('event.edit', $item->id)}}">{!! Str::limit($item->getProduct->name ?? 'kosong', 40) !!}</a> <br>
+                          {{$item->getTipe->name}}
+                        </td>
+                        <td>{{  date('d-m-Y', strtotime($item->on_event)) }}</td>
+                        <td title="{{$item->tema}}" >{!! Str::limit($item->tema, 60) !!}</td>
                         <td title="">
                             <form action="{{route('event.destroy', $item->id)}}" method="POST">
                                 <a href="{{route('event.edit', $item->id)}}" class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
