@@ -143,7 +143,7 @@ class EvaluationController extends Controller
     {
         //
         $data = Evaluation::find($id);
-        $data->udpate([
+        $data->update([
             'status_id' => 0
         ]);
 
