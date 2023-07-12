@@ -14,6 +14,7 @@ use App\Http\Controllers\DetailWorkflowController;
 use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PotensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,6 +158,15 @@ Route::prefix('evaluation')->group(function(){
 	Route::get('/detailEv/{id}', [EvaluationController::class, 'detailEv'])->name('evaluation.detail');
 	Route::post('update/{id}', [EvaluationController::class, 'update'])->name('evaluation.update');
 	Route::post('delete/{id}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
+});
+
+Route::prefix('potensi')->group(function(){
+	Route::get('/', [PotensiController::class, 'index'])->name('potensi');
+	Route::get('create/{id}', [PotensiController::class, 'create'])->name('potensi.create');
+	Route::post('store/{id}', [PotensiController::class, 'store'])->name('potensi.store');
+	Route::get('edit/{id}', [PotensiController::class, 'edit'])->name('potensi.edit');
+	Route::post('update/{id}', [PotensiController::class, 'update'])->name('potensi.update');
+	Route::post('delete/{id}', [PotensiController::class, 'destroy'])->name('potensi.destroy');
 });
 
 

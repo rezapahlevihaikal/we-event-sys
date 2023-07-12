@@ -40,6 +40,9 @@
                     <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Budget</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-potensi-tab" data-toggle="pill" href="#custom-tabs-one-potensi" role="tab" aria-controls="custom-tabs-one-potensi" aria-selected="false">Potensi Revenue</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Sponsor</a>
                   </li>
                   <li class="nav-item">
@@ -375,6 +378,51 @@
                                     </tbody>
                                   </table>
                   </div>
+                  {{-- POTENSI REVENUE --}}
+                  <div class="tab-pane fade" id="custom-tabs-one-potensi" role="tabpanel" aria-labelledby="custom-tabs-one-potensi-tab">
+                    <div class="header">
+                      @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
+                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/potensi/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                        Tambah Data
+                      </button>
+                      @endif
+                    </div>
+                      <br>
+                    <!-- /.card-header -->
+                      <table id="potensi" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                          <th>Company</th>
+                          <th>Potensi</th>
+                          <th>Aktual Potensi</th>
+                          <th>Aktual Revenue</th>
+                          @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
+                          <th>Action</th>
+                          @endif
+                        </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($dataPotensi as $item)
+                            <tr style="text-align:center;">
+                              <td title="{{$item->getCompany->company_name ?? 'Kosong'	}}">{!! Str::limit($item->getCompany->company_name ?? 'Kosong', 40) !!}</td>
+                              <td>@currency($item->potensi)</td>
+                              <td>@currency($item->aktual_potensi)</td>
+                              <td>@currency($item->aktual_revenue)</td>
+                              @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
+                              <td title="">
+                                <form action="{{route('potensi.destroy', $item->id)}}" method="POST">
+                                    <a href=" {{route('potensi.edit', $item->id )}} " class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>
+                                    @csrf
+                                    @method('post')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yang bener?');"><i class="fas fa-trash"></i></button></td>
+                                </form>
+                              </td>
+                              @endif
+                            </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                  </div>
                   {{-- SPONSOR --}}
                   <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
                       <div class="header">
@@ -621,6 +669,9 @@
           ordering: false,
         });
         $('#event_budget').DataTable({
+          ordering: false,
+        });
+        $('#potensi').DataTable({
           ordering: false,
         });
         $('#sponsor').DataTable({
