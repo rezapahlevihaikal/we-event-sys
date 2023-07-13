@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="row" style="padding-top: 10px">
-                        <div class="col">
+                        {{-- <div class="col">
                             <label for="formGroupExampleInput2">Aktual Potensi</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
@@ -58,7 +58,7 @@
                                 </div>
                                 <input type="text" class="form-control" id="aktual_potensi" placeholder="1.000.0000" name="aktual_potensi" value="{{$data->aktual_potensi}}">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col">
                             <label for="formGroupExampleInput2">Aktual Revenue</label>
                             <div class="input-group mb-2">

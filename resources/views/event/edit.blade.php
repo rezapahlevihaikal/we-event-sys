@@ -394,7 +394,6 @@
                         <tr>
                           <th>Company</th>
                           <th>Potensi</th>
-                          <th>Aktual Potensi</th>
                           <th>Aktual Revenue</th>
                           @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
                           <th>Action</th>
@@ -406,7 +405,6 @@
                             <tr style="text-align:center;">
                               <td title="{{$item->getCompany->company_name ?? 'Kosong'	}}">{!! Str::limit($item->getCompany->company_name ?? 'Kosong', 40) !!}</td>
                               <td>@currency($item->potensi)</td>
-                              <td>@currency($item->aktual_potensi)</td>
                               <td>@currency($item->aktual_revenue)</td>
                               @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 24)
                               <td title="">

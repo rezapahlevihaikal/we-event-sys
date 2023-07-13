@@ -73,7 +73,7 @@ class EvaluationController extends Controller
     public function detailEV($id)
     {
         $event = Event::findOrFail($id);
-        $design = Evaluation::where('event_id', '=', $event->id)->get();
+        $design = Evaluation::where('event_id', '=', $event->id)->where('status_id', '=', '1')->get();
         return view('evaluation.detail', compact('event', 'design'));
     }
 
