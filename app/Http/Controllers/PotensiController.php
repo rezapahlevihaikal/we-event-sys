@@ -50,7 +50,7 @@ class PotensiController extends Controller
             'event_id' => $event->id,
             'company_id' => $request->company_id,
             'potensi' => str_replace('.', '', $request->potensi),
-            'aktual_potensi' => str_replace('.', '', $request->aktual_potensi),
+            // 'aktual_potensi' => str_replace('.', '', $request->aktual_potensi),
             'aktual_revenue' => str_replace('.', '', $request->aktual_revenue),
         ]);
 
@@ -98,7 +98,7 @@ class PotensiController extends Controller
         $data->update([
             'company_id' => $request->company_id,
             'potensi' => str_replace('.', '', $request->potensi),
-            'aktual_potensi' => str_replace('.', '', $request->aktual_potensi),
+            // 'aktual_potensi' => str_replace('.', '', $request->aktual_potensi),
             'aktual_revenue' => str_replace('.', '', $request->aktual_revenue),
         ]);
 
