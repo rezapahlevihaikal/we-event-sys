@@ -112,6 +112,17 @@
                             <label for="formGroupExampleInput2">On Event</label>
                             <input id="" class="form-control" type="date" name="on_event" value=""/>
                         </div>
+                        <div class="col">
+                          <label for="formGroupExampleInput2">Status Event</label>
+                          <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="status_event" required>
+                            <option value="">PILIH STATUS</option>
+                            <option value="Start">Start</option>
+                            <option value="Progress">Progress</option>
+                            <option value="Finish">Finish</option>
+                            <option value="Tentatif">Tentatif</option>
+                            <option value="Cancel">Cancel</option>
+                          </select>
+                      </div>
                     </div>
                     <div class="row" style="padding-top: 10px">
                         <div class="col">

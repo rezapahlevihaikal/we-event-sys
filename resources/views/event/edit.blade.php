@@ -143,6 +143,16 @@
                                 <label for="formGroupExampleInput2">On Event</label>
                                 <input id="" class="form-control" type="date" name="on_event" value="{{$data->on_event}}"/>
                             </div>
+                            <div class="col">
+                              <label for="formGroupExampleInput2">On Event</label>
+                              <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="status_event" required>
+                                <option value="Start" {{$data->status_event == "Start"  ? 'selected' : ''}}>Start</option>
+                                <option value="Progress" {{$data->status_event == "Progress"  ? 'selected' : ''}}>Progress</option>
+                                <option value="Finish" {{$data->status_event == "Finish"  ? 'selected' : ''}}>Finish</option>
+                                <option value="Tentatif" {{$data->status_event == "Tentatif"  ? 'selected' : ''}}>Tentatif</option>
+                                <option value="Cancel" {{$data->status_event == "Cancel"  ? 'selected' : ''}}>Cancel</option>
+                              </select>
+                          </div>
                         </div>
                         <div class="row" style="padding-top: 10px">
                             <div class="col">

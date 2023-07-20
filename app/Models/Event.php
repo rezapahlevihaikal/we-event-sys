@@ -21,6 +21,7 @@ class Event extends Model
         'budget',
         'schedule',
         'on_event',
+        'status_event',
         'file',
         'status',
         'prediksi_revenue'

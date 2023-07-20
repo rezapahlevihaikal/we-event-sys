@@ -38,6 +38,7 @@
                   <thead style="text-align: center">
                   <tr>
                     <th>Judul / Tipe</th>
+                    <th>Status</th>
                     <th>On Event</th>
                     <th>Tema</th>
                     <th>Action</th>
@@ -50,6 +51,7 @@
                           <a href="{{route('event.edit', $item->id)}}">{!! Str::limit($item->getProduct->name ?? 'kosong', 40) !!}</a> <br>
                           {{$item->getTipe->name}}
                         </td>
+                        <td>{{$item->status_event ?? 'No Status'}}</td>
                         <td>{{  date('d-m-Y', strtotime($item->on_event)) }}</td>
                         <td title="{{$item->tema}}" >{!! Str::limit($item->tema, 60) !!}</td>
                         <td title="">
