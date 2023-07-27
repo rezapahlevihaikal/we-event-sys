@@ -269,4 +269,13 @@ class EventController extends Controller
         return redirect()->back()->with('success', 'data berhasil dihapus');
     }
 
+    public function destroyDoc($id)
+    {
+        $data = Dokumentasi::find($id);
+        $data->update([
+            'status_id' => 0
+        ]);
+        return redirect()->back()->with('success', 'data berhasil dihapus');
+    }
+
 }

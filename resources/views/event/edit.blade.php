@@ -644,7 +644,7 @@
                                     </a>
                                     @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 23 || Auth::user()->id_core_bisnis == 24)
                                     <form action="{{route('dokumentasi.destroy', $photo->id)}}" method="POST">
-                                      <input type="hidden" name="_method" value="delete">
+                                      <input type="hidden" name="_method" value="">
                                       {!! csrf_field() !!}
                                       <button type="submit" class="close-icon btn btn-danger"><i class="fas fa-minus-circle"></i></button>
                                     </form>

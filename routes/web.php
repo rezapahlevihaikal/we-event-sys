@@ -119,7 +119,7 @@ Route::prefix('dokumentasi')->group(function(){
 	Route::post('store/{id}', [DokumentasiController::class, 'store'])->name('dokumentasi.store');
 	Route::get('edit/{id}', [DokumentasiController::class, 'edit'])->name('dokumentasi.edit');
 	Route::post('update/{id}', [DokumentasiController::class, 'update'])->name('dokumentasi.update');
-	Route::post('delete/{id}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
+	Route::post('delete/{id}', [EventController::class, 'destroyDoc'])->name('dokumentasi.destroy');
 });
 
 Route::prefix('eventWorkflow')->group(function(){
