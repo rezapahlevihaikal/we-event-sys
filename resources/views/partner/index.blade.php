@@ -46,6 +46,24 @@
                               <label for="formGroupExampleInput2">Nama Partner</label>
                               <input type="text" class="form-control" name="nama_partner" id="">
                             </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2">Tipe Partner</label>
+                              <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="type" required>
+                                <option value="">TIPE PARTNER</option>
+                                <option value="Internal">Internal</option>
+                                <option value="External">External</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2">Fee Marketing</label>
+                              <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="fee_marketing" required>
+                                <option value="">FEE MARKETING</option>
+                                <option value="5">5%</option>
+                                <option value="10">10%</option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                              </select>
+                            </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                               <button type="sybmit" class="btn btn-primary">Add Data</button>
@@ -62,6 +80,8 @@
                   <thead>
                   <tr>
                     <th>Name</th>
+                    <th>Tipe Partner</th>
+                    <th>Fee Marketing</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -69,6 +89,8 @@
                     @foreach($data as $item)
                       <tr style="text-align:center;">
                         <td title="{{$item->nama_partner}}">{!! Str::limit($item->nama_partner, 40) !!}</td>
+                        <td>{{$item->type ?? '-'}}</td>
+                        <td>{{$item->fee_marketing ?? '-'}}</td>
                         <td title="">
                             <form action="{{route('partner.destroy', $item->id)}}" method="POST">
                                 <a href="{{route('partner.edit', $item->id)}}" class="btn btn-success btn-sm" role="button" aria-disabled="true"><i class="fas fa-edit"></i></a>

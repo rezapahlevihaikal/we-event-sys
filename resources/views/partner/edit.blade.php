@@ -35,6 +35,26 @@
                             <label for="demo_overview_minimal">Nama Partner</label>
                             <input type="text" class="form-control" name="nama_partner" id="" value="{{$data->nama_partner}}">
                         </div>
+                        <div class="col">
+                            <label for="demo_overview_minimal">Tipe Partner</label>
+                            <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="type" required>
+                              <option value="">TIPE PARTNER</option>
+                              <option value="Internal" {{$data->type == "Internal"  ? 'selected' : ''}}>Internal</option>
+                              <option value="External" {{$data->type == "External"  ? 'selected' : ''}}>External</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col">
+                            <label for="demo_overview_minimal">Fee Marketing</label>
+                            <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="fee_marketing" required>
+                              <option value="">FEE MARKETING</option>
+                              <option value="5" {{$data->fee_marketing == "5"  ? 'selected' : ''}}>5%</option>
+                              <option value="10" {{$data->fee_marketing == "10"  ? 'selected' : ''}}>10%</option>
+                              <option value="15" {{$data->fee_marketing == "15"  ? 'selected' : ''}}>15%</option>
+                              <option value="20" {{$data->fee_marketing == "20"  ? 'selected' : ''}}>20%</option>
+                            </select>
+                        </div>
                     </div>
                     <br>
                     <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>

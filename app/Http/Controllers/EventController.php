@@ -15,6 +15,7 @@ use App\Models\Dokumentasi;
 use App\Models\Audience;
 use App\Models\partner;
 use App\Models\Potensi;
+use App\Models\ProjectIncome;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
@@ -160,6 +161,7 @@ class EventController extends Controller
         
         $dataAu = Audience::where('event_id', '=', $data->id)->get();
         $dataPotensi = Potensi::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        $dataPI = ProjectIncome::where('event_id', '=', $data->id)->get();
         // $dataD = DB::table('daily_tasks')
         //         ->join('detail_workflows','daily_tasks.detail_id','=','detail_workflows.id')
         //         ->where('daily_tasks.event_id','=',6)
@@ -169,7 +171,22 @@ class EventController extends Controller
         // $dataD2 = DB::select("SELECT sum(bobot) from daily_tasks a inner join detail_workflows b on a.detail_id=b.id where a.event_id=$id and a.status='done' and a.workflow_id=$dataWorkflow->workflow_id")->get();
         $doc = Dokumentasi::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         
-        return view('event.edit', compact('dataProduct', 'dataTipeEvent', 'dataWorkflow', 'data', 'dataEb', 'dataS', 'dataK', 'dataD', 'doc', 'sumSpon', 'dataAu', 'dataPartner', 'dataPotensi'));
+        return view('event.edit', compact(
+            'dataProduct',
+            'dataTipeEvent', 
+            'dataWorkflow', 
+            'data', 
+            'dataEb', 
+            'dataS', 
+            'dataK', 
+            'dataD', 
+            'doc', 
+            'sumSpon', 
+            'dataAu', 
+            'dataPartner', 
+            'dataPotensi', 
+            'dataPI'
+        ));
     }
 
     /**

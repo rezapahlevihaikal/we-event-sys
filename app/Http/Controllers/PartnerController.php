@@ -44,7 +44,9 @@ class PartnerController extends Controller
     {
         //x`
         $data = partner::create([
-            'nama_partner' => $request->nama_partner
+            'nama_partner' => $request->nama_partner,
+            'type' => $request->type,
+            'fee_marketing' => $request->fee_marketing
         ]);
 
         if ($data) {
@@ -91,7 +93,9 @@ class PartnerController extends Controller
         //
         $data = partner::find($id);
         $data->update([
-            'nama_partner' => $request->nama_partner
+            'nama_partner' => $request->nama_partner,
+            'type' => $request->type,
+            'fee_marketing' => $request->fee_marketing
         ]);
 
         if ($data) {

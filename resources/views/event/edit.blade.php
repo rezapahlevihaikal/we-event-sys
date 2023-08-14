@@ -54,6 +54,12 @@
                   <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-doc-tab" data-toggle="pill" href="#custom-tabs-one-doc" role="tab" aria-controls="custom-tabs-one-doc" aria-selected="false">Dokumentasi</a>
                   </li>
+                  @if (Auth::user()->id_core_bisnis == 19)
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-pro-tab" data-toggle="pill" href="#custom-tabs-one-pro" role="tab" aria-controls="custom-tabs-one-doc" aria-selected="false">Project Income</a>
+                  </li>
+                  @endif
+                  
                 </ul>
               </div>
               <div class="card-body">
@@ -144,7 +150,7 @@
                                 <input id="" class="form-control" type="date" name="on_event" value="{{$data->on_event}}"/>
                             </div>
                             <div class="col">
-                              <label for="formGroupExampleInput2">On Event</label>
+                              <label for="formGroupExampleInput2">Status Event</label>
                               <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="status_event" required>
                                 <option value="Start" {{$data->status_event == "Start"  ? 'selected' : ''}}>Start</option>
                                 <option value="Progress" {{$data->status_event == "Progress"  ? 'selected' : ''}}>Progress</option>
@@ -273,7 +279,6 @@
                                 <div class="card-body">
                                   <a class="thumbnail fancybox" rel="ligthbox" href="/uploads/audience/{{$item->file}}">
                                     <img src="/uploads/audience/{{$item->file}}" alt="">
-                                   
                                   </a>
                                   
                                 </div>
@@ -661,7 +666,85 @@
                       </div>
                       @endif 
                   </div>
-                </div>
+                  @if (Auth::user()->id_core_bisnis == 19)
+                      {{-- PROJECT INCOME --}}
+                  <div class="tab-pane fade" id="custom-tabs-one-pro" role="tabpanel" aria-labelledby="custom-tabs-one-pro-tab">
+                    @if (count($dataPI) < 1)
+                    <div class="header">
+                      <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/audience/create', $data->id)}}'" data-toggle="modal" data-target="#exampleModal">
+                        Masukkan Nilai
+                      </button>
+                  </div>
+                    @endif
+                    <br>
+                    @foreach ($dataPI as $item)
+                      <div class="row">
+                        <div class="col">
+                          <div class="card text-white mb-6">
+                            <div class="card-header" style="text-align: center">WARTA EKONOMI</div>
+                          </div>
+                          <div class="card text-white mb-6">
+                            <div class="card-header">Income</div>
+                            <div class="card-body">
+                              <h2 style="text-align: center">
+                                  @currency($item->income_we)
+                              </h2>
+                            </div>
+                          </div>
+                          <div class="card text-white mb-6">
+                            <div class="card-header">PPN</div>
+                            <div class="card-body">
+                              <h2 style="text-align: center">
+                                @currency($item->ppn_we)
+                              </h2>
+                            </div>
+                          </div>
+                          <div class="card text-white mb-6">
+                            <div class="card-header">PPH</div>
+                            <div class="card-body">
+                              <h2 style="text-align: center">
+                                @currency($item->pph_we)
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-white mb-6">
+                            <div class="card-header" style="text-align: center">PARTNER</div>
+                          </div>
+                          <div class="card text-white mb-6">
+                            <div class="card-header">Income</div>
+                            <div class="card-body">
+                              <h2 style="text-align: center">
+                                @currency($item->income_partner)
+                              </h2>
+                            </div>
+                          </div>
+                          <div class="card text-white mb-6">
+                            <div class="card-header">PPN</div>
+                            <div class="card-body">
+                              <h2 style="text-align: center">
+                                @currency($item->ppn_partner)
+                              </h2>
+                            </div>
+                          </div>
+                          <div class="card text-white mb-6">
+                            <div class="card-header">PPH</div>
+                            <div class="card-body">
+                              <h2 style="text-align: center">
+                                @currency($item->pph_partner)
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-sm btn-primary" onclick="window.location='{{url('/project-income/edit', $item->id)}}'" data-toggle="modal">
+                      Edit Data Jumlah Peserta
+                    </button>
+                  @endforeach
+                  </div>
+                  
+                  @endif
               </div>  
             </div>
           </div>

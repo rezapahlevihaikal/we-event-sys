@@ -15,6 +15,7 @@ use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PotensiController;
+use App\Http\Controllers\ProjectIncomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,6 +168,15 @@ Route::prefix('potensi')->group(function(){
 	Route::get('edit/{id}', [PotensiController::class, 'edit'])->name('potensi.edit');
 	Route::post('update/{id}', [PotensiController::class, 'update'])->name('potensi.update');
 	Route::post('delete/{id}', [PotensiController::class, 'destroy'])->name('potensi.destroy');
+});
+
+Route::prefix('project-income')->group(function(){
+	Route::get('/', [ProjectIncomeController::class, 'index'])->name('project-income');
+	Route::get('create/{id}', [ProjectIncomeController::class, 'create'])->name('project-income.create');
+	Route::post('store/{id}', [ProjectIncomeController::class, 'store'])->name('project-income.store');
+	Route::get('edit/{id}', [ProjectIncomeController::class, 'edit'])->name('project-income.edit');
+	Route::post('update/{id}', [ProjectIncomeController::class, 'update'])->name('project-income.update');
+	Route::post('delete/{id}', [ProjectIncomeController::class, 'destroy'])->name('project-income.destroy');
 });
 
 
