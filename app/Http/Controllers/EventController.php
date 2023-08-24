@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class EventController extends Controller
 {
@@ -157,7 +158,13 @@ class EventController extends Controller
                 ->sum('deals.amount_po');
 
         $dataK = Keynote::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
-        $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+
+        if (Auth::user()->id_core_bisnis == 26) {
+            $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->where('workflow_id'. '!=', 26)->latest('created_at')->get();
+        } else {
+            $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
+        }
+    
         
         $dataAu = Audience::where('event_id', '=', $data->id)->get();
         $dataPotensi = Potensi::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
