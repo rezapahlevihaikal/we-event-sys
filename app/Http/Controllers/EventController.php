@@ -160,7 +160,7 @@ class EventController extends Controller
         $dataK = Keynote::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
 
         if (Auth::user()->id_core_bisnis == 26) {
-            $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->where('workflow_id'. '!=', 26)->latest('created_at')->get();
+            $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->whereNotIn('workflow_id', [2])->latest('created_at')->get();
         } else {
             $dataD = DailyTask::where('event_id', '=', $data->id)->where('status_id', '=', '1')->latest('created_at')->get();
         }

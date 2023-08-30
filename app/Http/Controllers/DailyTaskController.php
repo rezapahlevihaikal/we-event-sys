@@ -10,6 +10,7 @@ use App\Models\DetailWorkflow;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Auth;
 
 class DailyTaskController extends Controller
 {
@@ -31,7 +32,11 @@ class DailyTaskController extends Controller
     public function create($id)
     {
         //
-        $workflow = Workflow::get(['id', 'name']);
+        if (Auth::user()->id_core_bisnis == 26) {
+            $workflow = Workflow::whereNotIn('id', [2])->get(['id', 'name']);
+        } else {
+            $workflow = Workflow::get(['id', 'name']);
+        }
         // $tipeEvent = TipeEvent::get(['id', 'name']);
         // $detail = DetailWorkflow::get(['id', 'tipe_event_id','detail']);
         $dataEvent = Event::findOrFail($id);
@@ -130,7 +135,12 @@ class DailyTaskController extends Controller
     public function edit($id)
     {
         //
-        $workflow = Workflow::get(['id', 'name']);
+        if (Auth::user()->id_core_bisnis == 26) {
+            $workflow = Workflow::whereNotIn('id', [2])->get(['id', 'name']);
+        } else {
+            $workflow = Workflow::get(['id', 'name']);
+        }
+        
         $detail = DetailWorkflow::get(['id', 'tipe_event_id','detail']);
         $data = DailyTask::find($id);
         return view('dailyTask.edit', compact('data', 'detail', 'workflow'));
