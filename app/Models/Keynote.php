@@ -16,6 +16,8 @@ class Keynote extends Model
         'event_id',
         'narasumber',
         'tema',
-        'url'
+        'url',
+        'status',
+        'file'
     ];
 }

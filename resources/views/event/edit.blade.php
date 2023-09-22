@@ -46,7 +46,7 @@
                     <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Sponsor</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Keynote</a>
+                    <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Keynote dan Juri</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-daily-tab" data-toggle="pill" href="#custom-tabs-one-daily" role="tab" aria-controls="custom-tabs-one-daily" aria-selected="false">Daily Task</a>
@@ -59,7 +59,6 @@
                     <a class="nav-link" id="custom-tabs-one-pro-tab" data-toggle="pill" href="#custom-tabs-one-pro" role="tab" aria-controls="custom-tabs-one-doc" aria-selected="false">Project Income</a>
                   </li>
                   @endif
-                  
                 </ul>
               </div>
               <div class="card-body">
@@ -493,7 +492,7 @@
                           </tbody>
                         </table>
                   </div>
-                  {{-- KEYNOTE SPEAKER --}}
+                  {{-- KEYNOTE SPEAKER dan JURI --}}
                   <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
                     <div class="header">
                       @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 21)
@@ -508,6 +507,7 @@
                         <thead>
                         <tr style="text-align: center">
                           <th>Narasumber</th>
+                          <th>Status</th>
                           <th>Tema</th>
                           @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 21)
                           <th>Action</th>
@@ -518,6 +518,7 @@
                           @foreach($dataK as $item)
                             <tr style="text-align:center;">
                               <td title="{{$item->narasumber}}">{!! Str::limit($item->narasumber, 40) !!}</td>
+                              <td title="{{$item->status}}">{{$item->status}}</td>
                               <td title="{{$item->tema}}">{!! Str::limit($item->tema, 40) !!}</td>
                               @if (Auth::user()->id_core_bisnis == 19 || Auth::user()->id_core_bisnis == 21)
                               <td title="">
@@ -742,8 +743,7 @@
                       Edit Data Jumlah Peserta
                     </button>
                   @endforeach
-                  </div>
-                  
+                  </div> 
                   @endif
               </div>  
             </div>

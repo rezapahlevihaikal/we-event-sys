@@ -98,6 +98,7 @@ Route::prefix('keynote')->group(function(){
 	Route::post('store/{id}', [KeynoteController::class, 'store'])->name('keynote.store');
 	Route::get('edit/{id}', [KeynoteController::class, 'edit'])->name('keynote.edit');
 	Route::post('update/{id}', [KeynoteController::class, 'update'])->name('keynote.update');
+	Route::get('download/{id}', [KeynoteController::class, 'getFileBudget'])->name('keynote.download');
 	Route::post('delete/{id}', [KeynoteController::class, 'destroy'])->name('keynote.destroy');
 });
 

@@ -36,12 +36,21 @@
                             <input type="text" name="narasumber" class="form-control">
                         </div>
                         <div class="col">
-                            <label for="formGroupExampleInput2">Tema</label>
-                            <input type="text" name="tema" class="form-control">
-                        </div>
+                          <label for="formGroupExampleInput2">Status</label>
+                          <select id="demo_overview_minimal" class="form-control" data-role="select-dropdown" data-profile="minimal" name="status" required>
+                            <option value="">PILIH STATUS</option>
+                            <option value="keynote speaker">Keynote Speaker</option>
+                            <option value="juri">Juri</option>
+                          </select>
+                       </div>
                     </div>
                     <div class="row" style="padding-top: 10px">
                       <div class="col">
+                        <label for="formGroupExampleInput2">Tema</label>
+                        <input type="text" name="tema" class="form-control">
+                      </div>
+                      <div class="col">
+                        <label for="formGroupExampleInput2">URl</label>
                         <label class="sr-only" for="inlineFormInputGroup">URl</label>
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
@@ -49,10 +58,27 @@
                           </div>
                           <input type="text" name="url" class="form-control" id="inlineFormInputGroup" placeholder="URl">
                         </div>  
-                        <br>
-                        <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
-                        <button class="btn btn-primary" type="submit">Create Data</button>
+                      </div>
                     </div>
+                    <div class="row" style="padding-top: 10px">
+                      <div class="col">
+                        <label for="demo_overview_minimal">File (Max : 5 MB)</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="exampleInputFile" name="file">
+                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                              @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                              @enderror
+                            </div>
+                          </div>
+                    </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-success" onclick="history.back()" type="reset">Back</button>
+                    <button class="btn btn-primary" type="submit">Create Data</button>
                   </form>
               </div>
               <!-- /.card-body -->
